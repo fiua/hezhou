@@ -1,0 +1,92 @@
+---
+
+---
+
+<style>
+  header {
+    font-size: 14px;
+    width: 100%;
+    position: fixed;
+    top: 0; /* 距离顶部0px */
+    left: 0; /* 距离左边0px */
+    width: 100%; /* 可选，视需要设置宽度 */
+    backdrop-filter: saturate(180%) blur(20px);
+    z-index: 1000; /* 可选，确保它在其他元素上方 */
+    .header {
+      max-width: 1184px;
+      margin: 0 auto;
+      height: 60px;
+      display: flex;
+      .logo {
+        display: flex;
+        align-items: center;
+        height: 100%;
+        img {
+          height: 32px;
+          cursor: pointer;
+        }
+      }
+      justify-content: space-between;
+    }
+    .nav {
+      font-size: 14px;
+      max-width: 984px;
+      display: flex;
+      .navigation {
+        margin-right: 32px;
+        display: flex;
+        a {
+          margin: 19px 32px 0 0;
+          color: #000;
+          display: inline-block;
+          line-height: 24px;
+          font-size: 14px;
+          flex-shrink: 0;
+          height: 32px;
+        }
+        a:hover {
+          color: #ff4800;
+        }
+        a:nth-of-type(5) {
+          margin-right: 0;
+        }
+      }
+      .consult {
+        a {
+          padding: 0 32px 0 22px;
+          background-color: #ff4800;
+          border-radius: 50px !important;
+          border: none !important;
+          height: 32px;
+          line-height: 32px;
+          color: #fff;
+          margin: 14px 0 0;
+          flex-shrink: 0;
+          display: inline-block;
+        }
+      }
+    }
+  }
+</style>
+<header>
+  <div class="header">
+    <div class="logo">
+      <img
+        src="https://promotion-static.tuyacn.com/static/285367595845279744.png"
+        alt=""
+      />
+    </div>
+    <nav class="nav">
+      <div class="navigation">
+        <a href=""><span>智能家电</span></a>
+        <a href=""><span>智慧出行</span></a>
+        <a href=""><span>智慧能源</span></a>
+        <a href=""><span>全屋智能</span></a>
+        <a href=""><span>工业互联</span></a>
+      </div>
+      <div class="consult">
+        <a href="">立即咨询</a>
+      </div>
+    </nav>
+  </div>
+</header>
