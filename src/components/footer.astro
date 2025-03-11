@@ -1,0 +1,307 @@
+---
+import { getFooter } from "../api/index.js";
+let result = await getFooter();
+let data = result.data;
+---
+
+<style lang="less">
+  footer {
+    width: 100%;
+    background-color: #131415;
+    @media screen and (max-width: 768px) {
+      display: none;
+    }
+    .footer-container {
+      padding: 0 48px;
+      .footer-container-top {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .footer-container-top-list {
+        padding: 48px 0 16px;
+        display: flex;
+        justify-content: space-between;
+        max-width: 1296px;
+        width: 100%;
+        .footer-container-top-list-item {
+          margin-bottom: 24px;
+          width: 20%;
+          .footer-container-top-list-sub {
+            h5 {
+              height: 24px;
+              margin-bottom: 8px;
+              font-size: 14px;
+              font-weight: 600;
+              color: #fff;
+              line-height: 24px;
+            }
+            .footer-container-top-item-sub {
+              height: 24px;
+              margin-top: 8px;
+              text-align: left;
+              line-height: 24px;
+              a {
+                font-size: 14px;
+                font-weight: 400;
+                color: #c7cbd0;
+                text-decoration: none;
+                text-align: left;
+                line-height: 24px;
+              }
+              :hover {
+                color: rgba(255, 90, 40, 1);
+              }
+            }
+          }
+        }
+      }
+      .footer-container-top-link {
+        width: 100%;
+        max-width: 1296px;
+        height: 64px;
+        border-top: 1px solid #2d2f31;
+        .footer-container-top-link-content {
+          display: flex;
+          justify-content: space-between;
+          width: 100%;
+          height: 24px;
+          margin-top: 20px;
+          .footer-container-top-link-content-left {
+            width: 48px;
+            height: 100%;
+            img {
+              width: 100%;
+              height: 100%;
+            }
+          }
+          .footer-container-top-link-content-right {
+            display: flex;
+            min-width: 24px;
+            height: 100%;
+            a {
+              margin-left: 0;
+              width: 24px;
+              height: 100%;
+              margin-left: 16px;
+              img {
+                width: 100%;
+                height: 100%;
+              }
+            }
+          }
+        }
+      }
+    }
+    .footer-container-bottom {
+      display: flex;
+      width: 100%;
+      min-height: 67px;
+      background-color: #222;
+      box-sizing: border-box;
+      padding: 0 48px;
+      .footer-container-bottom-content {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        max-width: 1296px;
+        height: 100%;
+        margin: auto;
+        justify-content: space-between;
+        .footer-container-bottom-content-box {
+          min-height: 40px;
+          width: calc(100% - 132px);
+          .footer-policy {
+            min-height: 20px;
+            line-height: 20px;
+            font-size: 12px;
+            a {
+              position: relative;
+              display: inline-block;
+              padding-right: 25px;
+              font-weight: 400;
+              color: #91959a;
+              background-color: transparent;
+              text-decoration: none;
+              cursor: pointer;
+              line-height: 20px;
+              font-size: 12px;
+              &::after {
+                position: absolute;
+                top: 50%;
+                right: 12px;
+                transform: translateY(-50%);
+                width: 1px;
+                height: 14px;
+                content: " ";
+                background-color: #404144;
+              }
+            }
+          }
+          .footer-copyright {
+            min-height: 20px;
+            line-height: 20px;
+            font-size: 12px;
+            span {
+              margin-left: 12px;
+              font-weight: 400;
+              color: #91959a;
+              line-height: 20px;
+            }
+            span:nth-of-type(1) {
+              margin-left: 0;
+            }
+          }
+        }
+        .footer-container-bottom-content-language {
+          display: flex;
+          justify-content: center;
+          position: relative;
+          width: 120px;
+          padding: 8px 0;
+          border: 1px solid #606266;
+          border-radius: 5px;
+          align-items: center;
+          cursor: pointer;
+          .language-text {
+            display: inline-flex;
+            align-items: center;
+            svg:nth-of-type(1) {
+              width: 16px;
+              height: 16px;
+            }
+            span {
+              display: inline-block;
+              margin-left: 4px;
+              color: #fff;
+              font-size: 12px;
+              font-weight: 500;
+              line-height: 22px;
+            }
+            svg:nth-of-type(2) {
+              fill: #fff;
+              width: 12px;
+              height: 12px;
+              margin-left: 4px;
+              transition: 0.3s;
+            }
+          }
+        }
+      }
+    }
+  }
+</style>
+<footer>
+  <div class="footer-container">
+    <div class="footer-container-top">
+      <ul class="footer-container-top-list">
+        {
+          data.map((item: any) => {
+            return (
+              <li class="footer-container-top-list-item">
+                <ul class="footer-container-top-list-sub">
+                  <h5>{item.title}</h5>
+                  {item.sections.map((T: any) => {
+                    return (
+                      <li class="footer-container-top-item-sub">
+                        <a href="">{T}</a>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </li>
+            );
+          })
+        }
+      </ul>
+
+      <div class="footer-container-top-link">
+        <div class="footer-container-top-link-content">
+          <div class="footer-container-top-link-content-left">
+            <img
+              src="https://promotion-static.tuyacn.com/static/299826718141829120.png"
+              alt=""
+            />
+          </div>
+          <div class="footer-container-top-link-content-right">
+            <a href="">
+              <img
+                src="https://promotion-static.tuyacn.com/static/299826931384442880.png"
+                alt=""
+              />
+            </a>
+            <a href="">
+              <img
+                src="https://promotion-static.tuyacn.com/static/299826931384442880.png"
+                alt=""
+              />
+            </a>
+            <a href="">
+              <img
+                src="https://promotion-static.tuyacn.com/static/299826931384442880.png"
+                alt=""
+              />
+            </a>
+            <a href="">
+              <img
+                src="https://promotion-static.tuyacn.com/static/299826931384442880.png"
+                alt=""
+              />
+            </a>
+            <a href="">
+              <img
+                src="https://promotion-static.tuyacn.com/static/299826931384442880.png"
+                alt=""
+              />
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-container-bottom">
+    <div class="footer-container-bottom-content">
+      <div class="footer-container-bottom-content-box">
+        <div class="footer-policy">
+          <a href="">法律声明</a>
+          <a href="">隐私协议</a>
+          <a href="">加州权利隐私声明</a>
+          <a href="">服务条款</a>
+          <a href="">廉政合规</a>
+          <a href="">安全应急响应中心</a>
+        </div>
+        <div class="footer-copyright">
+          <span>©2014-2025 杭州涂鸦信息技术有限公司 版权</span>
+          <span>浙ICP备14011795号-6</span>
+          <span>浙B2-20210233号</span>
+          <span>浙公网安备33010602004238号</span>
+        </div>
+      </div>
+      <div class="footer-container-bottom-content-language">
+        <div class="language-text">
+          <svg
+            viewBox="0 0 1024 1024"
+            version="1.1"
+            xmlns="http://www.w3.org/2000/svg"
+            class="cc-basic-footer-language-typf-lang-svg"
+            ><path
+              d="M512 128c201.28 0 366.432 154.88 382.688 352H896v64h-1.312c-16 193.92-176.064 346.976-372.928 351.872L512 896C310.72 896 145.6 741.12 129.312 544H128v-64h1.312C145.568 282.88 310.688 128 512 128z m99.968 416.032h-199.936c3.168 82.656 18.464 158.368 42.432 214.272 20.608 48.096 42.72 71.328 55.584 73.536L512 832c12.48 0 35.84-23.04 57.536-73.696 24-55.904 39.264-131.616 42.432-214.272z m-264 0H193.6a320.288 320.288 0 0 0 217.792 271.84c-35.52-64.096-59.456-161.344-63.36-271.84z m482.464 0h-154.432c-3.904 110.496-27.84 207.744-63.36 271.84 117.696-38.976 205.12-144.416 217.792-271.84zM411.392 208.128l-2.144 0.736A320.288 320.288 0 0 0 193.568 480h154.432c3.904-110.528 27.84-207.776 63.36-271.872zM512 192c-12.48 0-35.84 23.04-57.536 73.696-24 55.904-39.264 131.616-42.432 214.304h199.936c-3.168-82.688-18.464-158.4-42.432-214.304-20.608-48.096-42.72-71.328-55.584-73.536L512 192z m100.64 16.128l0.8 1.472c35.072 64.128 58.688 160.736 62.56 270.4h154.432a320.288 320.288 0 0 0-217.792-271.872z"
+              fill="#fff"></path></svg
+          >
+          <span class="language">简体中文</span>
+          <svg
+            class="cc-basic-footer-language-typf-menu-arrow"
+            viewBox="0 0 1024 1024"
+            version="1.1"
+            xmlns="http://www.w3.org/2000/svg"
+            ><path
+              d="M144.896 418.304l325.76 325.888a57.6 57.6 0 0 0 81.536 0l325.76-325.888a57.6 57.6 0 1 0-81.408-81.408L511.36 621.952 226.304 336.896a57.6 57.6 0 0 0-81.408 81.408z"
+              p-id="1719"></path></svg
+          >
+        </div>
+        <div class="language-menu"></div>
+      </div>
+    </div>
+  </div>
+</footer>

@@ -9,6 +9,11 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^5.4.1"
+    "astro": "^5.4.1",
+    "bootstrap": "^3.4.1",
+    "bootstrap-ui": "^2.3.3"
+  },
+  "devDependencies": {
+    "less": "^4.2.2"
   }
 }

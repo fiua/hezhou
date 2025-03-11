@@ -1,0 +1,100 @@
+---
+
+---
+
+<style lang="less">
+  @screen-sm-min: 768px;
+  .container-brand {
+    width: 100%;
+    background-color: rgb(0, 92, 255);
+    .container {
+      max-width: 1184px;
+      height: 100%;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+      flex-wrap: wrap;
+      .container-box {
+        display: flex;
+        align-items: center;
+        img {
+          height: 48px;
+          margin-left: 32px;
+          @media (max-width: @screen-sm-min) {
+            height: 32px;
+            width: 30px;
+          }
+        }
+        .container-box-text {
+          margin-left: 32px;
+          padding: 32px 32px 32px 0;
+          .container-box-text-number {
+            font-size: 24px;
+            font-weight: 800;
+            line-height: 24px;
+            color: rgb(255, 255, 255);
+            white-space: nowrap;
+            @media (max-width: @screen-sm-min) {
+              font-size: 16px;
+            }
+          }
+          .container-box-text-word {
+            white-space: nowrap;
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 24px;
+            color: rgb(255, 255, 255);
+            margin: 4px 0px 0px;
+            @media (max-width: @screen-sm-min) {
+              font-size: 12px;
+            }
+          }
+        }
+      }
+    }
+  }
+  @media (max-width: @screen-sm-min) {
+    .container-brand {
+      .container {
+        justify-content: center;
+        padding-left: 0;
+        .container-box {
+          width: 50%;
+        }
+      }
+    }
+  }
+</style>
+<div class="container-brand">
+  <div class="container">
+    <div class="container-box">
+      <img src="/images/brand1.png" alt="" />
+      <div class="container-box-text">
+        <div class="container-box-text-number">7600+</div>
+        <div class="container-box-text-word">品牌客户</div>
+      </div>
+    </div>
+    <div class="container-box">
+      <img src="/images/brand2.png" alt="" />
+      <div class="container-box-text">
+        <div class="container-box-text-number">2700+</div>
+        <div class="container-box-text-word">设备种类</div>
+      </div>
+    </div>
+    <div class="container-box">
+      <img src="/images/brand3.png" alt="" />
+      <div class="container-box-text">
+        <div class="container-box-text-number">12万+</div>
+        <div class="container-box-text-word">全球渠道</div>
+      </div>
+    </div>
+    <div class="container-box">
+      <img src="/images/brand4.png" alt="" />
+      <div class="container-box-text">
+        <div class="container-box-text-number">70万+</div>
+        <div class="container-box-text-word">开发者</div>
+      </div>
+    </div>
+  </div>
+</div>

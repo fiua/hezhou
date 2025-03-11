@@ -1,0 +1,143 @@
+---
+
+---
+
+<style lang="less">
+  .container-hot {
+    height: 560px;
+    background-color: rgb(233, 238, 255);
+    background-size: auto 100%;
+    background-image: url("/images/1.jpg");
+    background-position-x: 50%;
+    background-position-y: 50%;
+    background-repeat: no-repeat;
+    @media (max-width: 767px) {
+      /* height: auto; */
+      background-image: url("/images/1-phone.jpg");
+      width: 100%;
+      margin-top: 60px;
+      background-size: 100% 100%;
+    }
+    .container {
+      padding-left: 32px;
+      padding-top: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      height: 560px;
+      max-width: 1184px;
+      margin: 0px auto;
+      @media (max-width: 767px) {
+        display: none;
+      }
+      .container-hot-1 {
+        width: 463px;
+        height: 63.43px;
+        font-size: 20px;
+        color: rgb(74, 74, 74);
+        max-width: 350px;
+        padding: 16px 0px 0px;
+        margin: 0px 0px 16px;
+        font-weight: 500;
+        .container-hot-1-btn {
+          display: inline-block;
+          button {
+            display: inline-block;
+            background-color: rgb(255, 85, 0);
+            margin: 20px 0px 0px;
+            border-radius: 6px;
+            color: #fff;
+            height: 24px;
+            padding: 0 7px;
+            font-size: 14px;
+          }
+        }
+      }
+      .container-hot-2 {
+        font-size: 56px;
+        color: rgb(0, 0, 0);
+        font-weight: 800;
+        line-height: 80px;
+        letter-spacing: normal;
+        white-space: break-spaces;
+        overflow-wrap: break-word;
+        display: -webkit-box;
+        overflow: hidden;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
+        overflow: hidden;
+      }
+      .container-hot-3 {
+        color: rgb(74, 74, 74);
+        font-size: 16px;
+        max-width: 350px;
+        padding: 16px 0px 0px;
+        margin: 16px 0px 32px;
+      }
+      .container-hot-4 {
+        margin-top: 16px;
+        font-weight: 700px;
+        display: inline-block;
+        background-color: rgb(255, 72, 0);
+        border-radius: 40px;
+        height: 40px;
+        padding: 6.4px 15px;
+        font-size: 16px;
+        .container-hot-4-box {
+          color: #fff;
+          font-weight: 700;
+          font-size: 16px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          div {
+          }
+          span {
+            margin-left: 8px;
+            svg {
+              text-align: center;
+            }
+          }
+        }
+      }
+    }
+  }
+</style>
+<div class="container-hot">
+  <div class="container">
+    <div class="container-box">
+      <div class="container-hot-1">
+        快速实现业务智能化升级
+        <div class="container-hot-1-btn">
+          <button>(热门方案)</button>
+        </div>
+      </div>
+      <div class="container-hot-2">涂鸦智能 <br />全球化 物联网平台</div>
+      <div class="container-hot-3">
+        物联网 PaaS、行业级 SaaS 以及云端增值等服务
+      </div>
+      <button class="container-hot-4">
+        <div class="container-hot-4-box">
+          <div>立即咨询</div>
+          <span>
+            <svg
+              viewBox="64 64 896 896"
+              focusable="false"
+              data-icon="right"
+              width="1em"
+              height="1em"
+              fill="currentColor"
+              aria-hidden="true"
+              ><path
+                d="M765.7 486.8L314.9 134.7A7.97 7.97 0 00302 141v77.3c0 4.9 2.3 9.6 6.1 12.6l360 281.1-360 281.1c-3.9 3-6.1 7.7-6.1 12.6V883c0 6.7 7.7 10.4 12.9 6.3l450.8-352.1a31.96 31.96 0 000-50.4z"
+              ></path></svg
+            ></span
+          >
+        </div>
+      </button>
+    </div>
+  </div>
+</div>

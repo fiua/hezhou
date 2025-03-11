@@ -1,8 +1,11 @@
 ---
+import { getNavgation } from "../api/index.js";
 
+let data = await getNavgation();
+let navigationName = data.data.Navigation;
 ---
 
-<style>
+<style lang="less">
   header {
     font-size: 14px;
     width: 100%;
@@ -17,6 +20,7 @@
       margin: 0 auto;
       height: 60px;
       display: flex;
+      justify-content: space-between;
       .logo {
         display: flex;
         align-items: center;
@@ -25,16 +29,41 @@
           height: 32px;
           cursor: pointer;
         }
+        @media (max-width: 768px) {
+          display: none;
+        }
       }
-      justify-content: space-between;
     }
+
     .nav {
       font-size: 14px;
       max-width: 984px;
       display: flex;
+      .nav-btn {
+        display: none;
+        @media (max-width: 768px) {
+          display: block;
+          width: 36px;
+          transition: all 0.3s linear;
+          > div {
+            width: 36px;
+            height: 100%;
+            display: flex;
+            justify-items: center;
+            align-items: center;
+            justify-content: center;
+          }
+        }
+      }
       .navigation {
         margin-right: 32px;
         display: flex;
+        @media (max-width: 768px) {
+          overflow-x: auto;
+          scroll-behavior: smooth;
+          scrollbar-width: none; /* 隐藏滚动条 (Firefox) */
+          margin: 0;
+        }
         a {
           margin: 19px 32px 0 0;
           color: #000;
@@ -43,11 +72,12 @@
           font-size: 14px;
           flex-shrink: 0;
           height: 32px;
+          text-decoration: none;
         }
         a:hover {
           color: #ff4800;
         }
-        a:nth-of-type(5) {
+        a:last-of-type {
           margin-right: 0;
         }
       }
@@ -63,6 +93,33 @@
           margin: 14px 0 0;
           flex-shrink: 0;
           display: inline-block;
+          white-space: nowrap;
+        }
+        @media (max-width: 768px) {
+          display: none;
+        }
+      }
+      @media (max-width: 768px) {
+        background-color: #fff;
+        .btn-left {
+          box-shadow: 10px 0 20px rgba(128, 128, 128, 0.1);
+          // margin-left: 10px;
+          // padding-right: 10px;
+
+          opacity: 1;
+          z-index: 2;
+          transform: translateX(0%);
+        }
+        .btn-right {
+          box-shadow: -10px 0 20px rgba(128, 128, 128, 0.1);
+          // margin-left: 10px;
+          // padding-right: 10px;
+          opacity: 1;
+          z-index: 2;
+          transform: translateX(0%);
+        }
+        a {
+          color: #606266 !important;
         }
       }
     }
@@ -77,12 +134,68 @@
       />
     </div>
     <nav class="nav">
+      <div class="nav-btn btn-left">
+        <div>
+          <svg
+            transform="rotate(90)"
+            width="16px"
+            height="16px"
+            viewBox="0 0 16 16"
+            ><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"
+              ><g
+                transform="translate(8, 8) scale(1, -1) rotate(-90) translate(-8, -8)"
+                ><rect x="0" y="0" width="16" height="16"></rect><polyline
+                  stroke="#000000"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  points="5.5 3 10.5 8 5.5 13"></polyline></g
+              ><path
+                d="M4.8636039,2.3636039 C5.18578644,2.04142136 5.691466,2.01457281 6.04423138,2.28305826 L6.1363961,2.3636039 L11.1363961,7.3636039 C11.4585786,7.68578644 11.4854272,8.191466 11.2169417,8.54423138 L11.1363961,8.6363961 L6.1363961,13.6363961 C5.78492424,13.987868 5.21507576,13.987868 4.8636039,13.6363961 C4.54142136,13.3142136 4.51457281,12.808534 4.78305826,12.4557686 L4.8636039,12.3636039 L9.227,8 L4.8636039,3.6363961 C4.54142136,3.31421356 4.51457281,2.808534 4.78305826,2.45576862 L4.8636039,2.3636039 Z"
+                id="路径-2备份-8"
+                fill="#000000"
+                fill-rule="nonzero"
+                transform="translate(8.000000, 8.000000) scale(1, -1) rotate(-90.000000) translate(-8.000000, -8.000000) "
+              ></path></g
+            ></svg
+          >
+        </div>
+      </div>
       <div class="navigation">
-        <a href=""><span>智能家电</span></a>
-        <a href=""><span>智慧出行</span></a>
-        <a href=""><span>智慧能源</span></a>
-        <a href=""><span>全屋智能</span></a>
-        <a href=""><span>工业互联</span></a>
+        {
+          navigationName.map((item: string) => (
+            <a href="#cardD">
+              <span>{item}</span>
+            </a>
+          ))
+        }
+      </div>
+      <div class="nav-btn btn-right">
+        <div>
+          <svg
+            transform="rotate(-90)"
+            width="16px"
+            height="16px"
+            viewBox="0 0 16 16"
+            ><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"
+              ><g
+                transform="translate(8, 8) scale(1, -1) rotate(-90) translate(-8, -8)"
+                ><rect x="0" y="0" width="16" height="16"></rect><polyline
+                  stroke="#000000"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  points="5.5 3 10.5 8 5.5 13"></polyline></g
+              ><path
+                d="M4.8636039,2.3636039 C5.18578644,2.04142136 5.691466,2.01457281 6.04423138,2.28305826 L6.1363961,2.3636039 L11.1363961,7.3636039 C11.4585786,7.68578644 11.4854272,8.191466 11.2169417,8.54423138 L11.1363961,8.6363961 L6.1363961,13.6363961 C5.78492424,13.987868 5.21507576,13.987868 4.8636039,13.6363961 C4.54142136,13.3142136 4.51457281,12.808534 4.78305826,12.4557686 L4.8636039,12.3636039 L9.227,8 L4.8636039,3.6363961 C4.54142136,3.31421356 4.51457281,2.808534 4.78305826,2.45576862 L4.8636039,2.3636039 Z"
+                id="路径-2备份-8"
+                fill="#000000"
+                fill-rule="nonzero"
+                transform="translate(8.000000, 8.000000) scale(1, -1) rotate(-90.000000) translate(-8.000000, -8.000000) "
+              ></path></g
+            ></svg
+          >
+        </div>
       </div>
       <div class="consult">
         <a href="">立即咨询</a>
@@ -90,3 +203,44 @@
     </nav>
   </div>
 </header>
+<script>
+  let navigation = document.querySelector(".navigation");
+  let btnLeft = document.querySelector(".btn-left");
+  let btnRight = document.querySelector(".btn-right");
+
+  navigation?.addEventListener("scroll", function () {
+    if (navigation?.scrollLeft == 0) {
+      btnLeft?.setAttribute(
+        "style",
+        "opacity: 0; z-index: -1; transform: translateX(-100%);"
+      );
+    } else {
+      btnLeft?.setAttribute(
+        "style",
+        "opacity: 1; z-index: 2; transform: translateX(0%);"
+      );
+    }
+    if (
+      navigation!.scrollLeft + navigation!.clientWidth + 1 >=
+      navigation!.scrollWidth
+    ) {
+      btnRight?.setAttribute(
+        "style",
+        "opacity: 1; z-index: 2; transform: translateX(100%);"
+      );
+    } else {
+      btnRight?.setAttribute(
+        "style",
+        "opacity: 1; z-index: 2; transform: translateX(0%);"
+      );
+    }
+  });
+  btnLeft?.addEventListener("click", function () {
+    navigation!.scrollLeft = 0;
+  });
+  btnRight?.addEventListener("click", function () {
+    if (navigation) {
+      navigation.scrollLeft = navigation.scrollWidth - navigation.clientWidth;
+    }
+  });
+</script>
