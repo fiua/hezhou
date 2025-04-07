@@ -1,0 +1,32 @@
+---
+
+---
+
+<style lang="less">
+  .scroll-button {
+    width: 42px;
+    height: 62px;
+    background-image: url(https://cdn.cnbj1.fds.api.mi-img.com/staticsfile/visual/top-icon.png);
+    background-size: 100% 100%;
+    background-position: 50%;
+    position: fixed;
+    left: calc(58% + 613px);
+    bottom: 36px;
+    transform: translateX(-100%);
+    z-index: 100;
+    cursor: pointer;
+    @media screen and (max-width: 768px) {
+      display: none;
+    }
+  }
+</style>
+<a class="scroll-button" href="#app"></a>
+
+<script>
+  import $ from "jquery";
+  $(() => {
+    $(".scroll-button").on("click", () => {
+      $("html, body").animate({ scrollTop: 0 }, 300);
+    });
+  });
+</script>

@@ -1,0 +1,273 @@
+---
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+---
+
+<style lang="less">
+  @keyframes moveUp {
+    0% {
+      transform: translateY(40px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  .swiper-container-banner {
+    // padding-top: 60px;
+    width: 100%;
+    height: auto;
+    color: @fontColor;
+    @media screen and (max-width: 768px) {
+      padding-top: 48px;
+    }
+    .swiper {
+      @media screen and (max-width: 768px) {
+        height: 200px;
+      }
+      .swiper-wrapper {
+        height: 100%;
+        .swiper-slide {
+          height: 100%;
+          @media screen and (max-width: 768px) {
+          }
+          .m-pic {
+            display: none;
+          }
+          @media screen and (max-width: 768px) {
+            .pic,
+            video {
+              display: none;
+            }
+            .m-pic {
+              display: block;
+              height: 100%;
+              position: absolute;
+              height: 200px;
+              width: 100%;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+              z-index: -1;
+              object-fit: cover;
+              background-size: cover;
+            }
+          }
+          video {
+            height: 100%;
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+            object-fit: cover;
+            background-size: cover;
+          }
+          .pic {
+            height: 100%;
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+            object-fit: cover;
+            background-size: cover;
+            img {
+              height: 100%;
+            }
+          }
+          a {
+            animation: moveUp 0.1s ease-out;
+            margin-top: 145px;
+            margin-bottom: 160px;
+            margin-right: 50%;
+            margin-left: 12%;
+            display: block;
+            height: 100%;
+            z-index: 2;
+            @media screen and (max-width: 768px) {
+              margin: 0;
+            }
+            .content {
+              height: 100%;
+              max-width: 1184px;
+              height: auto;
+              margin: 0 auto;
+              @media screen and (max-width: 768px) {
+                margin-left: 10%;
+              }
+
+              h5 {
+                margin-top: 30px;
+                font-size: 52px;
+                line-height: 80px;
+                font-weight: 700;
+                @media screen and (max-width: 768px) {
+                  font-size: 26px;
+                  line-height: 48px;
+                }
+              }
+              p {
+                font-size: 24px;
+                line-height: 48px;
+                @media screen and (max-width: 768px) {
+                  font-size: 16px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  //分页器的重写效果
+  :global(.swiper-pagination-bullet) {
+    background-color: red !important;
+    width: 8px;
+    height: 8px;
+  }
+
+  :global(.swiper-pagination-bullet-active) {
+    background-color: @bgColor3 !important;
+    width: 20px;
+    height: 8px;
+    border-radius: 7px;
+    transition: all 0.2s;
+  }
+
+  .swiper-button-prev::after,
+  .swiper-button-next::after {
+    color: #535353 !important; /* 让箭头变白 */
+    font-size: 24px; /* 调整箭头大小 */
+  }
+
+  .swiper-button-prev,
+  .swiper-button-next {
+    @media screen and (max-width: 768px) {
+      display: none;
+    }
+  }
+</style>
+<!-- banner的轮播图 -->
+<div class="swiper-container-banner">
+  <div class="swiper">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">
+        <video autoplay loop muted>
+          <source src="/images/banner-1.mp4" type="video/mp4" />
+        </video>
+        <!-- 移动端img -->
+        <img
+          src="/images/banner-1.jpeg"
+          alt="工业引擎"
+          class="m-pic"
+          lang="lazy"
+        />
+        <a href="#Engine">
+          <div class="content">
+            <h5>工业引擎</h5>
+            <p>Air8000系列选购</p>
+          </div>
+        </a>
+      </div>
+      <div class="swiper-slide">
+        <video autoplay loop muted>
+          <source src="/images/banner-2.mp4" type="video/mp4" />
+        </video>
+        <img
+          src="/images/banner-2.jpg"
+          alt="工业引擎"
+          class="m-pic"
+          lang="lazy"
+        />
+        <a href="#fourG">
+          <div class="content">
+            <h5>4G模组</h5>
+            <p>4G模组</p>
+          </div>
+        </a>
+      </div>
+      <div class="swiper-slide">
+        <div class="pic">
+          <img src="/images/banner-3.jpg" alt="" loading="lazy" />
+        </div>
+        <img
+          src="/images/banner-3.jpeg"
+          alt="工业引擎"
+          class="m-pic"
+          lang="lazy"
+        />
+
+        <a href="#meter">
+          <div class="content">
+            <h5>仪表</h5>
+            <p>合宙功耗分析仪Air9000 直流电源/Air9000P</p>
+          </div>
+        </a>
+      </div>
+      <div class="swiper-slide">
+        <div class="pic">
+          <img src="/images/banner-3.jpg" alt="" loading="lazy" />
+        </div>
+        <img
+          src="/images/banner-3.jpeg"
+          alt="工业引擎"
+          class="m-pic"
+          lang="lazy"
+        />
+
+        <a href="#cloud">
+          <div class="content">
+            <h5>云服务</h5>
+            <p>IoT DTU MES LBS</p>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="swiper-pagination"></div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+  </div>
+</div>
+<script>
+  import Swiper from "swiper";
+  import { Pagination, Autoplay, Navigation } from "swiper/modules";
+  //Dom元素加载完成后再用swiper
+  document.addEventListener("DOMContentLoaded", () => {
+    let mySwiper = new Swiper(".swiper", {
+      modules: [Pagination, Autoplay, Navigation],
+      loop: true,
+      autoplay: {
+        delay: 3000,
+        stopOnLastSlide: false,
+        disableOnInteraction: true,
+      },
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+        type: "bullets",
+      },
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+      on: {
+        slideChangeTransitionStart: function (): void {
+          const slides: NodeListOf<HTMLAnchorElement> =
+            document.querySelectorAll(".swiper-slide a");
+          slides.forEach((slide: HTMLAnchorElement) => {
+            slide.style.animation = "none"; // 先清除动画
+            void slide.offsetWidth; // 触发回流 (reflow)
+            slide.style.animation = "moveUp 0.5s linear"; // 重新添加动画
+          });
+        },
+      },
+    });
+  });
+</script>

@@ -3,26 +3,58 @@
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="zh-CN">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <meta name="baidu-site-verification" content="codeva-hR1yMpGPtX" />
     <meta name="generator" content={Astro.generator} />
-    <title>涂鸦智能硬件开发方案|海量成熟方案|极速产品智能化</title>
+    <title>上海合宙通信 - 降功耗，找合宙！</title>
+    <meta
+      name="keywords"
+      content="上海合宙,合宙通信,通信模块,模组,MCU,芯片,单片机,4G,4G Cat.1,Cat.1,MCU,5G,GNSS,WiFi,NB-IoT,物联网,嵌入式,车联网,工业互联网,智能电表,智能家居,智慧城市"
+    />
+    <meta
+      name="description"
+      content="上海合宙通信科技有限公司是一家专注于通信模组和主控MCU芯片的研发生产企业,提供4G、5G、GNSS、WiFi、NB-IoT等通信模组与解决方案,广泛应用于智能电表、智能家居、智慧城市、车联网等领域,为客户提供从芯片、模组到整体解决方案的一站式服务。"
+    />
+    <meta property="og:title" content="上海合宙通信 - 降功耗，找合宙！" />
+    <meta
+      property="og:description"
+      content="上海合宙通信科技有限公司是一家专注于通信模组和主控MCU芯片的研发生产企业,提供4G、5G、GNSS、WiFi、NB-IoT等通信模组与解决方案,广泛应用于智能电表、智能家居、智慧城市、车联网等领域,为客户提供从芯片、模组到整体解决方案的一站式服务。"
+    />
   </head>
   <body>
+    <video autoplay loop muted playsinline>
+      <source src="/images/background.mp4" type="video/mp4" />
+    </video>
     <slot />
   </body>
 </html>
 
-<style>
+<style lang="less">
+  :root {
+    --fallback-bg: #1a202c; /* 定义备用背景色 */
+  }
   html,
   body {
     margin: 0;
     width: 100%;
     overflow-x: hidden; /* 禁用水平滚动 */
-    width: 100%;
-    height: 100%;
+  }
+  video {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -1; /* 确保视频在其他内容后面 */
+    transform: translate(-50%, -50%);
+    @media screen and (max-width: 768px) {
+      display: none;
+    }
   }
 </style>

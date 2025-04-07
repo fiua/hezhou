@@ -1,0 +1,473 @@
+---
+// import data from "../data/4G-1.json";
+// import data2 from "../data/4G-2.json";
+import { getProductModel,getProductcomparison } from "../api/index.js";
+let data=await getProductModel();
+let data2=await getProductcomparison();
+const products = data.module;
+const comparisons=data2.model_comparison;
+---
+
+<style lang="less">
+  #fourG {
+    width: 100%;
+    scroll-margin-top: 60px;
+    font-size: 1.4rem;
+    
+    .boxShadow();
+    padding-bottom: 45px;
+
+    .title {
+      max-width: @maxwidth;
+      margin: 0 auto;
+      h2 {
+        font-size: 32px;
+        font-weight: 600;
+        padding-top: 50px;
+        padding-bottom: 42px;
+        @media screen and (max-width: 768px) {
+          font-size: 2rem;
+          padding: 2rem 0 2rem;
+        }
+      }
+    }
+    .content {
+      background-color: @whiteColor;
+      width: @maxwidth;
+      margin: 0 auto;
+      .boxShadow();
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(1, 1fr);
+      @media screen and (max-width: 768px) {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        box-shadow: none;
+      }
+      .left {
+        display: flex;
+        flex-direction: column;
+        font-weight: 600;
+        background-color: #f2f7ff;
+        @media screen and (max-width: 768px) {
+          width: 100%;
+          background-color:white;
+        }
+        ul {
+          padding: 12px 24px;
+          @media screen and (max-width: 768px) {
+            padding: 0;
+            width: auto;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            scrollbar-width: none;
+            margin: 0;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            font-size: 20px;
+            border-bottom: 0.8px solid #e5e5e5;
+          }
+          li {
+            padding:12px  14px;
+            margin-top: 8px;
+            cursor: pointer;
+            @media screen and (max-width: 768px) {
+              
+              padding:6px 0;
+              font-size: 1rem;
+              margin: 0 2rem;
+              white-space: nowrap;
+            }
+            &:hover {
+              color: @bgColor3;
+            }
+            span {
+              position: relative;
+              font-size: 14px;
+              @media screen and (max-width: 768px) {
+                font-size: 1rem;
+              }
+              &::after {
+                content: "";
+                position: absolute;
+                left: 0;
+                right: 0;
+                bottom: -14px;
+                height: 3px;
+                background: @bgColor3;
+                border-radius: 5px;
+                width: 0%;
+                transition: width 0.3s ease-in-out;
+                @media screen and (max-width: 768px) {
+                  bottom: -8px;
+                  height: 2px;
+                }
+              }
+              &.active {
+                color: @bgColor3;
+                &::after {
+                  width: 100%;
+                }
+              }
+            }
+          }
+        }
+      }
+      .right {
+        grid-column: span 3;
+        > div {
+          display: none;
+          height: 100%;
+          &.active {
+            display: block;
+            
+          }
+          //整个右边div
+          .right-1 {
+            height: 100%;
+            display: flex;
+            // padding: 30px 40px 0;
+            flex-wrap: wrap;
+            //每个盒子
+            > div {
+              padding: 0 50px;
+              flex: 1;
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              align-items: center;
+              // border: 1px solid rgba(105, 105, 105, 1);
+              cursor: pointer;
+              .border();
+              @media screen and (max-width: 768px) {
+                padding: 0;
+              }
+              &:hover{
+                    .boxLinear();
+                    h5{
+                      color: @bgColor3;}
+                  }
+              h5 {
+                font-size: 14px;
+                text-align: center;
+                font-weight: 600;
+                @media screen and (max-width: 768px) {
+                  font-size: 0.8rem;
+                }
+              }
+              > p {
+                text-align: center;
+                padding: 5px 0;
+                font-size: 12px;
+                @media screen and (max-width: 768px) {
+                  font-size: 0.6rem;
+                }
+              }
+              //图片组
+              > div {
+                display: flex;
+                align-content: center;
+            
+                // 每个图片
+                >div{
+                  flex: 1;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  flex-direction: column;
+                  
+                  .region{
+                    font-size: 12px;
+                    @media screen and (max-width: 768px) {
+                      font-size: 0.6rem;
+                      
+                    }
+                  }
+                  .pic{
+                    width: 100px;
+                    height: 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    padding: 5px 12px;
+                    margin : 0 16px;
+                    @media screen and (max-width: 768px) {
+                      width: 47px;
+                      padding: 0;
+                      margin: 0 3px;
+                    }
+                    img{
+                      @media screen and (max-width: 768px) {
+                        width: 50%;
+                      }
+                    }
+                  }
+                }
+              }
+              .itemname{
+                @media screen and (max-width: 768px) {
+                  font-size: 0.6rem;
+                  padding: 0.4rem 0;
+                }
+              }
+            }
+          }
+          .right-2 {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            justify-content: space-evenly;
+            padding: 20px 0;
+            @media screen and (max-width:768px) {
+            }
+            //每个横条
+            >a{
+              height: 100%;  
+              display: flex;
+              align-items: center;
+              width: 100%;
+              padding: 0 20px;
+              border-bottom: 0.8px solid #eee;
+              @media screen and (max-width: 768px) {
+                padding: 0;
+                font-size: 0.6rem;
+              }
+              &:nth-of-type(1){
+                font-weight: 600;
+                h5{
+                  text-align: center;
+                  font-weight: 600;
+                  font-size: 14px;
+                  @media screen and (max-width: 768px) {
+                    font-size: 0.8rem;
+                    
+                  }
+                }
+              }
+              h5{
+                width: 10%;
+                text-align: center;
+                
+                @media screen and (max-width: 768px) {
+                  font-size: 0.8rem;
+                  font-weight: 400;
+                }
+              }
+              &:hover{
+                .boxLinear();
+                h5{
+                  color: @bgColor3;}
+              }
+              >ul{
+                flex: 1;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                // padding: 0 50px;
+                cursor: pointer;
+                li{
+                  width: 15%;
+                  text-align: center;
+                  @media screen and (max-width: 768px) {
+                  }
+                }
+              }
+            }
+          }
+          .right-3{
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 5%;
+            .pic{
+              width: 100px;
+              height: 100%;
+            }
+            .bottom{
+              .border-top();
+              p{
+                padding: 5px 0;
+              }
+            }
+            >div:nth-of-type(1){
+              width: 100%;
+              display: flex;
+              justify-content: space-between;
+              padding: 5%;
+              >div:nth-of-type(1),>div:nth-of-type(2){
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              align-items: center;
+              >div{
+                display: flex;
+                flex-direction: column;
+
+              }
+            }
+            >div:nth-of-type(3){
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              >div{
+                display: flex;
+                flex-direction: column;
+                padding: 0 20px;
+              }
+            }
+            }
+          }
+        }
+      }
+    }
+  }
+</style>
+<div id="fourG">
+  <div class="title">
+    <h2>4G模组</h2>
+  </div>
+  <div class="content">
+    <div class="left">
+      <ul>
+        <li><span class="active">产品型号</span></li>
+
+        <li><span>产品对比</span></li>
+        <li><span>OpenCPU开发能力排行</span></li>
+        <li><span>AT指令模组推荐</span></li>
+        <li><span>模组功耗排行</span></li>
+        <li><span>模组大小排行</span></li>
+        <li><span>模组厚度排行</span></li>
+        <li><span>海外模组推荐</span></li>
+        <li><span>USB 上网模组</span></li>
+        <li><span>通信定位二合一模组</span></li>
+        <li><span>综合型号推荐</span></li>
+      </ul>
+    </div>
+    <div class="right">
+      <div class="active">
+        <div class="right-1">
+          {
+            products.map((product: any) => {
+              // 先检查 product.title 是否存在，避免解构错误
+              const title = product.category ?? "";
+              const features = product.features ?? "";
+
+              return (
+                <div>
+                  <h5>{title}</h5>
+                  <p>{features}</p>
+                  <div>
+                    {product.modules?.map((item:any) => {
+                      return (
+                        <div>
+                          <div class="region">{"region" in item ? item.region : ""}</div>
+
+                          <div class="pic">
+                            <img src=`/images/4g-1/${item.image}.png` alt="" loading="lazy"/>
+                          </div>
+                          <div class="itemname">{item.name}</div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              );
+            })
+          }
+        </div>
+      </div>
+      <div>
+        <div class="right-2">
+          
+          {comparisons.map((item:any) => (
+            
+            <a href={item.model==="模型型号"?"":`https://docs.openluat.com/${item.model.toLowerCase()}`} target="_blank">
+              <h5>{item.model}</h5>
+              <ul>
+                {Object.entries(item)
+                  .filter(([key]) => key !== "model") // 过滤掉 model 字段
+                  .map(([key, value]) => (
+                    <li>
+                      {value || ""}
+                    </li>
+                  ))}
+              </ul>
+            </a>
+          ))}
+        </div>
+      
+      </div>
+      
+      <div>
+        <div class="right-3">
+          
+           <div>
+            <div><div class="pic"><img src="/images/4g-1/Air724UG.png" alt=""></div><p>Air724UG</p></div>
+            <div><div class="pic"><img src="/images/4g-1/Air780EPM.png" alt=""></div><p>Air780EPM</p></div>
+            <div>
+              <div><div class="pic"><img src="/images/4g-1/Air780E.png" alt=""></div><p>Air780E</p></div>
+              <div><div class="pic"><img src="/images/4g-1/Air780EX.png" alt=""></div><p>Air780EX</p></div>
+              <div><div class="pic"><img src="/images/4g-1/Air780EG.png" alt=""></div><p>Air780EG</p></div>
+            </div>
+            
+           </div>
+          
+           <div class="bottom">
+            <p style="color: #1690ff; font-size: 18px;">特别说明：</p>
+
+            <p>这里所说的OpenCPU，特指含基于Lua脚本虚拟机研发的LuaOS开发方式；</p>
+
+            <p>LuaOS Gitee开源仓库：Gitee.com/openLuat</p>
+
+            <p>Air780EPM：</p>
+            <p>兼具低功耗、支持485/Modbus、以太网(RJ45)等OpenCPU功能，推荐选择</p>
+           </div>
+        </div>
+      </div>
+      <div>AT指令模组推荐</div>
+      <div>模组功耗排行</div>
+      <div>模组大小排行</div>
+      <div>模组厚度排行</div>
+      <div>海外模组推荐</div>
+      <div>USB 上网模组</div>
+      <div>通信定位二合一模组</div>
+      <div>综合型号推荐</div>
+    </div>
+  </div>
+</div>
+<script>
+//   document.querySelectorAll("#fourG .left li").forEach((item, index) => {
+//     item.addEventListener("click", () => {
+//       // 1. 先移除所有 a 的 active
+//       document.querySelectorAll("#fourG .right div").forEach((t, i) => {
+//         t.classList.remove("active");
+//       });
+      
+//       document.querySelectorAll("#fourG .left li span").forEach((t, i) => {
+//         t.classList.remove("active");
+//       });
+// // 2. 给当前点击的 a 添加 active
+//       document
+//         .querySelectorAll("#fourG .left li span")
+//         [index].classList.add("active");
+//       document
+//         .querySelectorAll("#fourG .right>div")
+//         [index].classList.add("active");
+//     });
+//   });
+  import $ from "jquery"
+  $(function($){
+    const $li = $("#fourG .left li");
+    const $span = $("#fourG .left li span");
+    const $fourGDiv=$("#fourG .right>div");
+    $li.on("click",function(){
+      $span.removeClass("active");
+      $span.eq($(this).index()).addClass("active");
+      $fourGDiv.eq($(this).index()).addClass("active").siblings()
+        .removeClass("active");
+    })
+  })
+</script>

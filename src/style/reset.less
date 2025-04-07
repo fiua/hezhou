@@ -1,0 +1,107 @@
+//文字颜色
+@fontColor: #181818;
+@bgColor: #e3f4ff;
+@bgColor2: #f5f3ff;
+@bgColor3: #1690ff;
+@whiteColor: #fff;
+@maxwidth: 91%;
+.boxShadow() {
+  box-shadow: 0 0 16px rgba(0,0,0,0.08);
+  -webkit-box-shadow: 0 0 16px rgba(0,0,0,0.08);
+}
+.boxLinear(){
+  background: linear-gradient(to right, @bgColor, @bgColor2);
+}
+.border(){
+  border: 0.8px solid #eee;
+}
+.border-top(){
+  border-top: 0.8px solid #eee;
+}
+/* 通用重置样式 */
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  font-family: sans-serif;
+  line-height: 1.15;
+  font-size: 10px;
+}
+
+body {
+  margin: 0;
+  color: rgba(0, 0, 0, 0.85);
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  font-variant: tabular-nums;
+  line-height: 1.5715;
+  background-color: #fff;
+  @media screen and (max-width: 768px) {
+    .boxLinear();
+  }
+}
+
+ol,
+ul ,li{
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: #000;
+  background-color: transparent;
+  cursor: pointer;
+  -webkit-transition: color 0.3s;
+  transition: color 0.3s;
+  outline: none;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+button {
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: pointer;
+  line-height: 1.5715;
+  position: relative;
+  display: inline-block;
+  font-weight: 400;
+  white-space: nowrap;
+  text-align: center;
+  background-image: none;
+  -webkit-box-shadow: 0 2px 0 rgba(0, 0, 0, 0.015);
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.015);
+  cursor: pointer;
+  -webkit-transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  height: 32px;
+  padding: 4px 15px;
+  font-size: 14px;
+  border-radius: 2px;
+  color: rgba(0, 0, 0, 0.85);
+  background: #fff;
+  border: 1px solid #d9d9d9;
+}

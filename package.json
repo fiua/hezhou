@@ -9,9 +9,11 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/vue": "^5.0.7",
+    "@types/jquery": "^3.5.32",
     "astro": "^5.4.1",
-    "bootstrap": "^3.4.1",
-    "bootstrap-ui": "^2.3.3"
+    "jquery": "^3.7.1",
+    "swiper": "^11.2.6"
   },
   "devDependencies": {
     "less": "^4.2.2"

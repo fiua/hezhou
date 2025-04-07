@@ -1,51 +1,31 @@
 ---
-// 头部导航栏
-import Header from "../components/Header.astro";
-import Hot from "../components/hot.astro";
 import Layout from "../layouts/Layout.astro";
-import Brand from "../components/brand.astro";
-import Form from "../components/Form.astro";
-import CardA from "../components/cardA.astro";
-import CardB from "../components/cardB.astro";
-import CardC from "../components/cardC.astro";
-import CardD from "../components/cardD.astro";
-import CardE from "../components/cardE.astro";
-import CardF from "../components/cardF.astro";
+import Header from "../components/Header.astro";
+import Carouselbanner from "../components/carousel-banner.astro";
+import Engine from "../components/engine.astro";
 import Footer from "../components/footer.astro";
-import Bottom from "../components/bottom.astro";
+import Cloud from "../components/cloud.astro";
+import Meter from "../components/meter.astro";
+import FourG from "../components/4G.astro";
+import Connect from "../components/connect.astro";
+import Select from "../components/select.astro";
 
-import "../style/reset.css";
-import "bootstrap";
+import Top from "../components/top.astro";
+
+import "../style/reset.less";
 ---
 
-<style>
-  /* 第二块内容区域的样式 */
-</style>
 <Layout>
   <div id="app">
-    <!-- 头部 ,引用Header组件-->
     <Header />
-    <!-- 第一块内容区域 -->
-    <Hot />
-    <!-- 第二块内容区域 蓝色品牌区域brand-->
-    <Brand />
-    <!-- 第三块区域 form表单-->
-    <Form />
-    <!-- 第四块区域 cardA -->
-    <CardA />
-    <!-- 第五块区域 cardB -->
-    <CardB />
-    <!-- 第六块区域 cardC -->
-    <CardC />
-    <!-- 第六块区域 cardD-->
-    <CardD />
-    <!-- 第七块区域 cardE-->
-    <CardE />
-    <!-- 第八块区域 cardE-->
-    <CardF />
-    <!-- 底部footer -->
+    <Top />
+    <Carouselbanner />
+    <Select />
+    <Engine />
+    <FourG />
+    <Meter />
+    <Cloud />
+    <Connect />
     <Footer />
-    <!-- 移动端底部浮动 -->
-    <Bottom />
   </div>
 </Layout>

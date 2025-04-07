@@ -1,0 +1,112 @@
+{
+    "title": "合宙超低功耗4G/定位模组",
+    "module": [
+        {
+            "category": "超小尺寸4G模组",
+            "features": "10×13×1.7mm超小超薄",
+            "modules": [
+                {
+                    "name": "Air700ECQ",
+                    "image": "Air700ECQ"
+                },
+                {
+                    "name": "Air700EAQ",
+                    "image": "Air700EAQ"
+                },
+                {
+                    "name": "Air700DEMQ",
+                    "image": "Air700DEMQ"
+                }
+            ]
+        },
+        {
+            "category": "USB上网模组",
+            "features": "支持RNDIS/PPP拨号",
+            "modules": [
+                {
+                    "name": "Air780ER",
+                    "image": "Air780ER"
+                }
+            ]
+        },
+        {
+            "category": "通信+定位",
+            "features": "4G+GPS/北斗二合一模组",
+            "modules": [
+                {
+                    "name": "Air780EG",
+                    "image": "Air780EG"
+                }
+            ]
+        },
+        {
+            "category": "GNSS定位模组",
+            "features": "灵活搭配4G模组使用",
+            "modules": [
+                {
+                    "name": "Air530Z",
+                    "image": "Air530Z"
+                },
+                {
+                    "name": "Air510U",
+                    "image": "Air510U"
+                }
+            ]
+        },
+        {
+            "category": "海外模组",
+            "features": "支持vSIM功能",
+            "modules": [
+                {
+                    "name": "Air780EEN",
+                    "image": "Air780EEN",
+                    "region": "北美地区"
+                },
+                {
+                    "name": "Air780EEU",
+                    "image": "Air780EEU",
+                    "region": "欧亚地区"
+                },
+                {
+                    "name": "Air780EEJ",
+                    "image": "Air780EEJ",
+                    "region": "日本地区"
+                }
+            ]
+        },
+        {
+            "category": "多功能4G模组",
+            "features": "行业经典封装，适合各行业应用",
+            "modules": [
+                {
+                    "name": "Air780EPM",
+                    "image": "Air780EPM"
+                },
+                {
+                    "name": "Air780EPS",
+                    "image": "Air780EPS"
+                },
+                {
+                    "name": "Air780EP",
+                    "image": "Air780EP"
+                },
+                {
+                    "name": "Air780EQ",
+                    "image": "Air780EQ"
+                },
+                {
+                    "name": "Air780EX",
+                    "image": "Air780EX"
+                },
+                {
+                    "name": "Air780E",
+                    "image": "Air780E"
+                },
+                {
+                    "name": "Air724UG",
+                    "image": "Air724UG"
+                }
+            ]
+        }
+    ]
+}

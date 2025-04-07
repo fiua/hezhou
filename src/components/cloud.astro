@@ -1,0 +1,119 @@
+---
+import { getCloud } from "../api/index";
+let contentData = await getCloud();
+---
+
+<style lang="less">
+  #cloud {
+    width: 100%;
+    scroll-margin-top: 50px;
+    font-size: 1.4rem;
+    .boxShadow();
+    padding-bottom: 45px;
+    .title {
+      padding: 16px;
+      @media screen and (max-width: 768px) {
+        width: 91%;
+        padding: 0;
+        margin: 0 auto;
+        p {
+          padding: 0 !important;
+        }
+      }
+      h2 {
+        padding: 0 53px;
+        font-size: 32px;
+        font-weight: 600;
+        padding-top: 50px;
+        padding-bottom: 42px;
+        @media screen and (max-width: 768px) {
+          font-size: 2rem;
+          padding: 2rem 0 2rem;
+        }
+      }
+    }
+    .content {
+      background: @whiteColor;
+      width: @maxwidth;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      cursor: pointer;
+      height: 200px;
+      @media screen and (max-width: 768px) {
+        width: 100%;
+        flex-wrap: wrap;
+        height: auto;
+      }
+      .item {
+        border: 0.8px solid #eee;
+        width: 100%;
+        height: 100%;
+        @media screen and (max-width: 768px) {
+          width: 50%;
+          height: 10rem;
+        }
+        > div {
+          padding: 26px 24px 0;
+          @media screen and (max-width: 768px) {
+            padding: 1rem;
+          }
+          h3 {
+            @media screen and (max-width: 768px) {
+              font-size: 1rem;
+            }
+          }
+          p {
+            font-size: 14px;
+            line-height: 24px;
+            margin-top: 12px;
+            color: #717171;
+            // height: 48px;
+            // overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            @media screen and (max-width: 768px) {
+              font-size: 0.8rem;
+              line-height: 1rem;
+            }
+          }
+        }
+        &:hover {
+          .boxLinear();
+        }
+      }
+    }
+  }
+</style>
+<div id="cloud">
+  <div class="title">
+    <h2>云服务</h2>
+    <p style="padding:0 53px;">点击下方目标进入登录入口</p>
+  </div>
+  <div class="content">
+    {
+      contentData.content.map((item: any) => (
+        <a class="item" href={item.link}>
+          <div>
+            <h3>{item.title}</h3>
+            <p>{item.description}</p>
+          </div>
+        </a>
+      ))
+    }
+  </div>
+</div>
+<script>
+  const content = document.querySelectorAll<HTMLElement>(
+    "#cloud .content .item"
+  );
+
+  content.forEach((item, index) => {
+    const link = item as HTMLAnchorElement;
+
+    link.target = "_blank";
+  });
+</script>

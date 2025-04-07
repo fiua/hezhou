@@ -1,0 +1,28 @@
+{
+    "data": {
+      "title": "合宙工业引擎系列，产品选型手册",
+
+      "challenges": [{
+          "title": "Air780EPM",
+          "description": "低功耗4G模组",
+          "more":"OpenCPU二次开发推荐选择"
+        },
+        {
+          "title": "Air8000",
+          "description": "工业引擎",
+          "more":"4G/Wi-Fi/BLE/GNSS"
+        },
+        {
+          "title": "Air2101",
+          "description": "工业引擎",
+          "more":"Wi-Fi/720P屏/200W摄像头"
+        },
+        {
+          "title": "Air8201",
+          "description": "工业引擎",
+          "more":"超低功耗4G/超低功耗GNSS"
+        }
+      ]
+
+    }
+}
