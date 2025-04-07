@@ -9,7 +9,6 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/vue": "^5.0.7",
     "@types/jquery": "^3.5.32",
     "astro": "^5.4.1",
     "jquery": "^3.7.1",

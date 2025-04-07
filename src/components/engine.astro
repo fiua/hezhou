@@ -1,8 +1,4 @@
 ---
-//air8000所有产品数据
-// import data from "../data/products8000.json";
-//对比表数据
-// import models from "../data/air8000_models.json";
 import { getAir8000Models, getProducts8000 } from "../api/index.js";
 let models = await getAir8000Models();
 let data = await getProducts8000();
@@ -67,7 +63,7 @@ let products = data.products;
             position: absolute;
             left: 0;
             right: 0;
-            bottom: -14px;
+            bottom: -59%;
             height: 3px;
             background: @bgColor3;
             border-radius: 5px;
@@ -422,29 +418,6 @@ let products = data.products;
   }
 </div>
 <script>
-  // const contentBox = document.querySelectorAll("#Engine .content-box");
-  // const contentNav = document.querySelectorAll("#Engine .container-nav a");
-  // // contentBox[0].classList.add("active");
-  // // document.querySelectorAll(".container-nav a div")[0].classList.add("active");
-  // contentNav.forEach((item, index) => {
-  //   item.addEventListener("click", () => {
-  //     // 1. 先移除所有 a 的 active
-  //     document.querySelectorAll(".container-nav a div").forEach((t, i) => {
-  //       t.classList.remove("active");
-  //     });
-  //     // 2. 给当前点击的 a 添加 active
-  //     document
-  //       .querySelectorAll(".container-nav a div")
-  //       [index].classList.add("active");
-  //     // 1. 先移除所有 div 的 active
-  //     contentBox.forEach((content) => {
-  //       content.classList.remove("active");
-  //     });
-
-  //     // 2. 给当前点击的 a 对应的 div 添加 active
-  //     contentBox[index].classList.add("active");
-  //   });
-  // });
   import $ from "jquery";
 
   $(function () {

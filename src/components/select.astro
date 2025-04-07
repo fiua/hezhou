@@ -6,7 +6,7 @@ let selectData = await getSelect();
 <style lang="less">
   #select {
     width: 100%;
-    padding-top: 50px;
+    padding-top: 10px;
     scroll-margin-top: 50px;
     @media screen and (max-width: 768px) {
       padding-top: 2rem;
@@ -14,29 +14,32 @@ let selectData = await getSelect();
     .boxShadow();
     padding-bottom: 45px;
     font-size: 1.4rem;
-    .select-container {
-      width: 91%;
-      margin: 0 auto;
+    .select-nav-container {
+      width: 100%;
+      border-bottom: 0.8px solid #e5e5e5;
       @media screen and (max-width: 768px) {
-        width: 100%;
+        height: auto;
       }
+
       .select-nav {
         display: flex;
         justify-content: flex-start;
         align-items: center;
-        border-bottom: 0.8px solid #e5e5e5;
-        font-size: 20px;
+        width: 91%;
+        margin: 0 auto;
+        font-size: 28px;
         font-weight: 700;
         @media screen and (max-width: 768px) {
-          width: 91%;
+          width: 100%;
           margin: 0 auto;
         }
         div {
           padding: 30px 60px 30px 0;
           cursor: pointer;
           @media screen and (max-width: 768px) {
-            padding: 0 2rem;
             font-size: 1rem;
+            margin: 0 2rem;
+            padding: 0;
           }
           &.active {
             color: @bgColor3;
@@ -50,24 +53,38 @@ let selectData = await getSelect();
             border-radius: 20px;
             transition: all 0.3s;
             position: relative;
+            display: inline-block;
+            @media screen and (max-width: 768px) {
+              padding: 5px 0;
+            }
             &::after {
               content: "";
               position: absolute;
               left: 0;
               right: 0;
-              bottom: -14px;
+              bottom: -68%;
               height: 3px;
               background: #1690ff;
               border-radius: 5px;
               width: 0%;
               transition: width 0.2s ease-in-out;
               @media screen and (max-width: 768px) {
-                bottom: -8px;
+                bottom: -1px;
+                height: 2px;
               }
             }
           }
         }
       }
+    }
+
+    .select-container {
+      width: 91%;
+      margin: 0 auto;
+      @media screen and (max-width: 768px) {
+        width: 100%;
+      }
+
       .select-content {
         margin-top: 20px;
         @media screen and (max-width: 768px) {
@@ -84,59 +101,53 @@ let selectData = await getSelect();
             display: flex;
             width: 100%;
             flex-wrap: wrap;
+
             .selected-box {
+              width: 33%;
               margin-top: 20px;
-              width: 20%;
-              position: relative;
-              white-space: nowrap;
-              .down-icon {
-                position: absolute;
-                width: 18px;
-                height: 18px;
-                right: 5%;
-                top: 25%;
-                cursor: pointer;
-                i {
-                  background: url("../assets/down-icon.svg");
-                  width: 18px;
-                  height: 18px;
-                  display: inline-block;
-                  background-position: 50%;
-                  background-size: 133% 133%;
-                  transition: all 0.3s;
-                  &.active {
-                    filter: brightness(0) saturate(100%);
-                    transform: rotate(180deg);
-                  }
-                }
-              }
-              .selected {
-                // display: inline-block;
-                border: 0.8px solid #e5e5e5;
-                padding: 5px 40px;
-                cursor: pointer;
-                background-color: rgba(255, 255, 255, 0.3);
-                border-radius: 8px 8px 0 0;
-              }
-              ul {
-                position: absolute;
-                top: 100%;
-                flex-direction: column;
-                display: none;
-                border: 0.8px solid #e5e5e5;
-                .boxLinear();
-                border-radius: 0 0 8px 8px;
-                z-index: 1;
+              @media screen and (max-width: 768px) {
                 width: 100%;
-                &.active {
-                  display: flex;
+                margin-top: 4px;
+                font-size: 1rem;
+              }
+              form {
+                padding: 0 40px 0 0;
+                display: flex;
+                align-items: center;
+                @media screen and (max-width: 768px) {
+                  padding: 0;
                 }
-                li {
-                  padding: 5px 40px;
+                .select-title {
+                  white-space: nowrap;
+                  margin-right: 3px;
+                  font-weight: 600;
+                }
+                & > div {
+                  display: flex;
+                  flex: 1;
+                }
+                label {
+                  display: flex;
+                  height: auto;
+                  padding: 0 6px;
                   cursor: pointer;
-                  &:hover {
-                    background-color: rgba(255, 255, 255, 1);
-                    color: @bgColor3;
+                  width: 50%;
+                  @media screen and (max-width: 768px) {
+                    width: 33%;
+                  }
+                  input {
+                    cursor: pointer;
+                    margin-right: 2px;
+                    @media screen and (max-width: 768px) {
+                      transform: scale(0.6);
+                      transform-origin: center;
+                    }
+                  }
+                  span {
+                    white-space: nowrap;
+                    &:hover {
+                      color: @bgColor3;
+                    }
                   }
                 }
               }
@@ -148,6 +159,9 @@ let selectData = await getSelect();
             text-align: center;
             padding: 20px 0;
             font-size: 14px;
+            @media screen and (max-width: 768px) {
+              font-size: 1rem;
+            }
           }
           .search-input {
             width: 90%;
@@ -157,6 +171,9 @@ let selectData = await getSelect();
             align-items: center;
             margin: 0 auto;
             position: relative;
+            @media screen and (max-width: 768px) {
+              width: 97%;
+            }
             .search-input {
               border-color: #595959;
               background-color: #fff;
@@ -171,6 +188,11 @@ let selectData = await getSelect();
               position: absolute;
               z-index: 1001;
               box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.078);
+              @media screen and (max-width: 768px) {
+                font-size: 1rem;
+                height: 34px;
+                padding: 8px 40px;
+              }
             }
             .close-iocn {
               background-image: url(../assets/cancel-icon.svg);
@@ -186,6 +208,9 @@ let selectData = await getSelect();
               width: 12px;
               z-index: 1001;
               transition: all 0.3s;
+              @media screen and (max-width: 768px) {
+                right: 25px;
+              }
               &:hover {
                 background-image: url(../assets/cancel-icon-h.png);
               }
@@ -205,6 +230,9 @@ let selectData = await getSelect();
               top: 50%;
               width: 18px;
               z-index: 1001;
+              @media screen and (max-width: 768px) {
+                left: 22px;
+              }
               i {
                 background: url(../assets/icon_search.svg);
                 background-position: 50%;
@@ -225,26 +253,37 @@ let selectData = await getSelect();
   }
 </style>
 <div id="select">
-  <div class="select-container">
+  <div class="select-nav-container">
     <div class="select-nav">
       <div class="active"><span>选型帮助</span></div>
       <div><span>AI选型</span></div>
     </div>
+  </div>
+  <div class="select-container">
     <div class="select-content">
       <div class="active selectionList">
         <div class="allcontent">
           {
             Object.entries(selectData).map(([key, value]) => (
-              <div class="selected-box" data-key={key}>
-                <div class="down-icon">
-                  <i class="down-icon-h" />
-                </div>
-                <div class="selected">{key}</div>
-                <ul class="options">
-                  {(value as string[]).map((item: string) => (
-                    <li>{item}</li>
-                  ))}
-                </ul>
+              <div class="selected-box">
+                <form class="select-form">
+                  <span class="select-title">{key}:</span>
+                  <div>
+                    {(value as [string | number]).map(
+                      (item: string | number, index: number) => (
+                        <label>
+                          <input
+                            type="radio"
+                            name={key}
+                            value={item}
+                            checked={index === 0}
+                          />
+                          <span class="selected">{item}</span>
+                        </label>
+                      )
+                    )}
+                  </div>
+                </form>
               </div>
             ))
           }
@@ -278,10 +317,9 @@ let selectData = await getSelect();
     // 缓存选择器
     const $selectNavDivs = $(".select-nav div");
     const $selectContentDivs = $(".select-content > div");
-    const $selectedBoxes = $(".selected-box");
-    const $options = $(".options");
-    const $downIconHs = $(".down-icon-h");
     const $inputSub = $(".inputSub");
+    const $selecttitle = $(".select-title");
+    const $selectForm = $(".select-form");
     let realTimeValue = "";
 
     // tab切换
@@ -294,34 +332,43 @@ let selectData = await getSelect();
         .removeClass("active");
     });
 
-    // 下拉框切换
-    $selectedBoxes.on("click", function () {
-      const $option = $(this).find(".options");
-      const isActive = $option.hasClass("active");
-      $options.removeClass("active");
-      $downIconHs.removeClass("active");
-
-      if (!isActive) {
-        $option.addClass("active");
-        $(this).find(".down-icon-h").addClass("active");
+    // 选择框
+    //计算title的宽度
+    let titleWidth = 0;
+    $selecttitle.each(function (index: number, item: HTMLElement) {
+      const width = item.offsetWidth;
+      if (width > titleWidth) {
+        titleWidth = width;
       }
     });
-
-    // 点击空白处关闭下拉框
-    $(document).on("click", (event) => {
-      if (!$(event.target).closest(".selected-box").length) {
-        $options.removeClass("active");
-        $downIconHs.removeClass("active");
-      }
+    $selecttitle.each(function (index, item) {
+      item.style.width = titleWidth + "px";
     });
-
-    // 获取 options 中 li 的值
-    $options.on("click", "li", function () {
-      const text = $(this).text();
-      const $selectedBox = $(this).closest(".selected-box");
-      const key = $selectedBox.data("key");
-      $selectedBox.find(".selected").text(`${key}：${text}`);
-      console.log(`${key}：${text}`);
+    //拿到from数据
+    interface FormData {
+      [key: string]: string | number;
+    }
+    const formData: FormData = {};
+    //复用调用函数
+    function getFormData() {
+      $selectForm.each(function () {
+        const $form = $(this);
+        const key = $form.find(".select-title").text().replace(":", "").trim();
+        const value = $form.find('input[type="radio"]:checked').val();
+        const $checkedInput = $form.find('input[type="radio"]:checked');
+        $form.find('input[type="radio"]').siblings().css("color", "");
+        if (typeof value === "string" || typeof value === "number") {
+          formData[key] = value;
+          $checkedInput.siblings().css("color", "#1690ff");
+        }
+      });
+    }
+    getFormData();
+    console.log("表单数据：", formData);
+    //当表单发生变化的时候，获取表单数据
+    $('.select-form input[type="radio"]').on("change", function () {
+      getFormData();
+      console.log("表单数据已更新：", formData);
     });
 
     // 输入框实时值

@@ -1,6 +1,5 @@
 ---
-// import data from "../data/4G-1.json";
-// import data2 from "../data/4G-2.json";
+
 import { getProductModel,getProductcomparison } from "../api/index.js";
 let data=await getProductModel();
 let data2=await getProductcomparison();
@@ -13,10 +12,12 @@ const comparisons=data2.model_comparison;
     width: 100%;
     scroll-margin-top: 60px;
     font-size: 1.4rem;
-    
     .boxShadow();
     padding-bottom: 45px;
+    &.show{
+    transform: translateY(0);
 
+    }
     .title {
       max-width: @maxwidth;
       margin: 0 auto;
@@ -439,25 +440,6 @@ const comparisons=data2.model_comparison;
   </div>
 </div>
 <script>
-//   document.querySelectorAll("#fourG .left li").forEach((item, index) => {
-//     item.addEventListener("click", () => {
-//       // 1. 先移除所有 a 的 active
-//       document.querySelectorAll("#fourG .right div").forEach((t, i) => {
-//         t.classList.remove("active");
-//       });
-      
-//       document.querySelectorAll("#fourG .left li span").forEach((t, i) => {
-//         t.classList.remove("active");
-//       });
-// // 2. 给当前点击的 a 添加 active
-//       document
-//         .querySelectorAll("#fourG .left li span")
-//         [index].classList.add("active");
-//       document
-//         .querySelectorAll("#fourG .right>div")
-//         [index].classList.add("active");
-//     });
-//   });
   import $ from "jquery"
   $(function($){
     const $li = $("#fourG .left li");
@@ -469,5 +451,8 @@ const comparisons=data2.model_comparison;
       $fourGDiv.eq($(this).index()).addClass("active").siblings()
         .removeClass("active");
     })
+
+
+    
   })
 </script>
