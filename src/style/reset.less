@@ -1,16 +1,22 @@
-//文字颜色
-@fontColor: #181818;
-@bgColor: #e3f4ff;
-@bgColor2: #f5f3ff;
-@bgColor3: #1690ff;
-@whiteColor: #fff;
-@maxwidth: 91%;
+// ======================
+// 颜色与尺寸变量
+// ======================
+@font-color: #181818;         // 主文字颜色
+@bg-gradient-start: #e3f4ff;
+@bg-gradient-end: #f5f3ff;
+@primary-blue: #1690ff;         // 主蓝色
+@whiteColor: #fff;              // 纯白色
+@maxwidth: 91%;                     // 容器最大宽度
+// ======================
+// 常用混合器 (Mixins)
+// ======================
+// 阴影效果
 .boxShadow() {
   box-shadow: 0 0 16px rgba(0,0,0,0.08);
   -webkit-box-shadow: 0 0 16px rgba(0,0,0,0.08);
 }
 .boxLinear(){
-  background: linear-gradient(to right, @bgColor, @bgColor2);
+  background: linear-gradient(to right, @bg-gradient-start, @bg-gradient-end);
 }
 .border(){
   border: 0.8px solid #eee;
@@ -18,7 +24,10 @@
 .border-top(){
   border-top: 0.8px solid #eee;
 }
-/* 通用重置样式 */
+// ======================
+// 全局样式重置
+// ======================
+// 盒模型与基础重置
 
 *,
 *::before,

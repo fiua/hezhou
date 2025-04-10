@@ -51,7 +51,7 @@ let products = data.products;
           padding: 5px 0;
           font-size: 22px;
           position: relative;
-          color: @fontColor;
+          color: @font-color;
           transition: 0.2s;
           white-space: nowrap;
           @media screen and (max-width: 768px) {
@@ -65,7 +65,7 @@ let products = data.products;
             right: 0;
             bottom: -59%;
             height: 3px;
-            background: @bgColor3;
+            background: @primary-blue;
             border-radius: 5px;
             width: 0%;
             transition: width 0.2s ease-in-out;
@@ -75,10 +75,10 @@ let products = data.products;
             }
           }
           &:hover {
-            color: @bgColor3;
+            color: @primary-blue;
           }
           &.active {
-            color: @bgColor3;
+            color: @primary-blue;
             &::after {
               width: 100%;
             }
@@ -107,7 +107,7 @@ let products = data.products;
         align-items: flex-end;
         padding-top: 20px;
         -webkit-background-clip: text;
-        color: @fontColor;
+        color: @font-color;
         @media screen and (max-width: 768px) {
           width: @maxwidth;
           font-size: 0.8rem;
@@ -172,10 +172,10 @@ let products = data.products;
                 }
               }
               &:nth-child(even) {
-                background-color: @bgColor;
+                background-color: @bg-gradient-start;
               }
               &:nth-child(odd) {
-                background-color: @bgColor2;
+                background-color: @bg-gradient-start;
               }
               &:nth-last-of-type(1) {
                 border-bottom: none;
@@ -210,7 +210,7 @@ let products = data.products;
           &:hover {
             .boxLinear();
             .bg-title {
-              color: @bgColor3;
+              color: @primary-blue;
             }
           }
           p,
@@ -247,7 +247,7 @@ let products = data.products;
           .bg-title {
             font-size: 16px;
             font-weight: 700;
-            color: @fontColor;
+            color: @font-color;
             margin-top: 6px;
             @media screen and (max-width: 768px) {
               font-size: 0.8rem;
