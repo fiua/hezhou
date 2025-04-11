@@ -2,6 +2,7 @@
 import { getMeter } from "../api/index.js";
 let contentData = await getMeter();
 let { air9000, air9000P } = contentData;
+import FadeIn from "./fadeIn.astro";
 ---
 
 <style lang="less">
@@ -176,52 +177,126 @@ let { air9000, air9000P } = contentData;
   }
 </style>
 
-<div id="meter">
-  <div class="title">
-    <h2>功耗分析仪</h2>
-  </div>
-  <div class="content">
-    <div class="item">
-      <div>
-        <div class="text1">
-          <h3 class="title">{air9000.name}</h3>
-          <div class="text-content">
-            <div class="pic">
-              <img src="/images/carousel-Air9000P.png" alt="" loading="lazy" />
-            </div>
-            <div class="context">
-              <div class="left">
-                <div class="sm-title">{air9000.sections[0].title}</div>
-                <div class="tb">
-                  <table>
-                    <tbody>
-                      {
-                        air9000.sections[0].content.map((item: any) => (
-                          <tr>
-                            <td>{item.label}</td>
-                            <td>{item.value}</td>
-                          </tr>
-                        ))
-                      }
-                    </tbody>
-                  </table>
+<section id="meter">
+  <FadeIn>
+    <div class="title">
+      <h2>功耗分析仪</h2>
+    </div>
+    <div class="content">
+      <div class="item">
+        <div>
+          <div class="text1">
+            <h3 class="title">{air9000.name}</h3>
+            <div class="text-content">
+              <div class="pic">
+                <img
+                  src="/images/carousel-Air9000P.png"
+                  alt=""
+                  loading="lazy"
+                />
+              </div>
+              <div class="context">
+                <div class="left">
+                  <div class="sm-title">{air9000.sections[0].title}</div>
+                  <div class="tb">
+                    <table>
+                      <tbody>
+                        {
+                          air9000.sections[0].content.map((item: any) => (
+                            <tr>
+                              <td>{item.label}</td>
+                              <td>{item.value}</td>
+                            </tr>
+                          ))
+                        }
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <div class="right">
+                  <div class="sm-title">{air9000.sections[1].title}</div>
+                  <div class="tb">
+                    <table>
+                      <tbody>
+                        {
+                          air9000.sections[1].content.map((item: any) => (
+                            <tr>
+                              <td>{item.label}</td>
+                              <td>{item.value}</td>
+                            </tr>
+                          ))
+                        }
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
               </div>
-              <div class="right">
-                <div class="sm-title">{air9000.sections[1].title}</div>
-                <div class="tb">
-                  <table>
-                    <tbody>
-                      {
-                        air9000.sections[1].content.map((item: any) => (
-                          <tr>
-                            <td>{item.label}</td>
-                            <td>{item.value}</td>
-                          </tr>
-                        ))
-                      }
-                    </tbody>
-                  </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="item">
+        <div>
+          <div class="text3">
+            <h3 class="title">可调稳压直流电源</h3>
+            <div class="box">
+              <div class="context">
+                <p>可搭配Air9000使用，也可以独立使用</p>
+                <p>超轻超小，单手可握，独立风扇，长时间工作无压力</p>
+              </div>
+              <div class="pic">
+                <img src="/images/carousel-power.png" alt="" loading="lazy" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="item">
+        <div>
+          <div class="text1">
+            <h3 class="title">{air9000P.name}</h3>
+            <div class="text-content">
+              <div class="pic">
+                <img
+                  src="/images/carousel-Air9000P.png"
+                  alt=""
+                  loading="lazy"
+                />
+              </div>
+              <div class="context">
+                <div class="left">
+                  <div class="sm-title">{air9000P.sections[0].title}</div>
+                  <div class="tb">
+                    <table>
+                      <tbody>
+                        {
+                          air9000P.sections[0].content.map((item: any) => (
+                            <tr>
+                              <td>{item.label}</td>
+                              <td>{item.value}</td>
+                            </tr>
+                          ))
+                        }
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <div class="right">
+                  <div class="sm-title">{air9000P.sections[1].title}</div>
+                  <div class="tb">
+                    <table>
+                      <tbody>
+                        {
+                          air9000P.sections[1].content.map((item: any) => (
+                            <tr>
+                              <td>{item.label}</td>
+                              <td>{item.value}</td>
+                            </tr>
+                          ))
+                        }
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
               </div>
             </div>
@@ -229,69 +304,5 @@ let { air9000, air9000P } = contentData;
         </div>
       </div>
     </div>
-    <div class="item">
-      <div>
-        <div class="text3">
-          <h3 class="title">可调稳压直流电源</h3>
-          <div class="box">
-            <div class="context">
-              <p>可搭配Air9000使用，也可以独立使用</p>
-              <p>超轻超小，单手可握，独立风扇，长时间工作无压力</p>
-            </div>
-            <div class="pic">
-              <img src="/images/carousel-power.png" alt="" loading="lazy" />
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="item">
-      <div>
-        <div class="text1">
-          <h3 class="title">{air9000P.name}</h3>
-          <div class="text-content">
-            <div class="pic">
-              <img src="/images/carousel-Air9000P.png" alt="" loading="lazy" />
-            </div>
-            <div class="context">
-              <div class="left">
-                <div class="sm-title">{air9000P.sections[0].title}</div>
-                <div class="tb">
-                  <table>
-                    <tbody>
-                      {
-                        air9000P.sections[0].content.map((item: any) => (
-                          <tr>
-                            <td>{item.label}</td>
-                            <td>{item.value}</td>
-                          </tr>
-                        ))
-                      }
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-              <div class="right">
-                <div class="sm-title">{air9000P.sections[1].title}</div>
-                <div class="tb">
-                  <table>
-                    <tbody>
-                      {
-                        air9000P.sections[1].content.map((item: any) => (
-                          <tr>
-                            <td>{item.label}</td>
-                            <td>{item.value}</td>
-                          </tr>
-                        ))
-                      }
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+  </FadeIn>
+</section>

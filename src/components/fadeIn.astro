@@ -1,0 +1,49 @@
+---
+// FadeIn.astro
+const { class: customClass = "" } = Astro.props;
+---
+
+<div class={`fade-in-on-scroll ${customClass}`}>
+  <slot />
+</div>
+
+<style>
+  .fade-in-on-scroll {
+    opacity: 0;
+    transform: translateY(120px);
+    transition:
+      opacity 1s ease-out,
+      transform 1s ease-out;
+    will-change: opacity, transform;
+  }
+
+  .fade-in-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+
+<script>
+  import $ from "jquery";
+  $(function () {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target); // 可改成循环触发
+          }
+        });
+      },
+      {
+        root: null, // 视口
+        rootMargin: "-10% 0px -10% 0px", // 上下各收缩 50%，变成中间线
+        threshold: 0, // 元素只要一点点进入中线区域就触发
+      }
+    );
+
+    document.querySelectorAll(".fade-in-on-scroll").forEach((el) => {
+      observer.observe(el);
+    });
+  });
+</script>

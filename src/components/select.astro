@@ -98,13 +98,10 @@ let selectData = await getSelect();
         }
         .selectionList {
           .allcontent {
-            display: flex;
-            width: 100%;
-            flex-wrap: wrap;
-
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 10px;
             .selected-box {
-              width: 33%;
-              margin-top: 20px;
               @media screen and (max-width: 768px) {
                 width: 100%;
                 margin-top: 4px;
@@ -252,7 +249,7 @@ let selectData = await getSelect();
     }
   }
 </style>
-<div id="select">
+<section id="select">
   <div class="select-nav-container">
     <div class="select-nav">
       <div class="active"><span>选型帮助</span></div>
@@ -309,7 +306,7 @@ let selectData = await getSelect();
       </div>
     </div>
   </div>
-</div>
+</section>
 <script>
   import $ from "jquery";
 

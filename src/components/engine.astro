@@ -3,6 +3,7 @@ import { getAir8000Models, getProducts8000 } from "../api/index.js";
 let models = await getAir8000Models();
 let data = await getProducts8000();
 let products = data.products;
+import FadeIn from "./fadeIn.astro";
 ---
 
 <style lang="less">
@@ -29,13 +30,11 @@ let products = data.products;
     .container-nav {
       width: 100%;
       display: flex;
-      justify-content: space-evenly;
+      justify-content: space-around;
       align-items: center;
       padding: 25px 0;
       font-size: 20px;
       font-weight: 700;
-      // .boxShadow();
-      // box-shadow: 0px 12px 12px rgba(105, 105, 105, 0.1);
       border-bottom: 0.8px solid #e5e5e5;
       @media screen and (max-width: 768px) {
         padding: 2px 0;
@@ -47,7 +46,6 @@ let products = data.products;
       }
       a {
         div {
-          margin: 0 40px;
           padding: 5px 0;
           font-size: 22px;
           position: relative;
@@ -101,9 +99,7 @@ let products = data.products;
         font-size: 20px;
         font-weight: 600;
         display: flex;
-        // justify-content: center;
         justify-content: flex-start;
-        // align-items: center;
         align-items: flex-end;
         padding-top: 20px;
         -webkit-background-clip: text;
@@ -187,8 +183,7 @@ let products = data.products;
       // 8000系列
       .content-box-content {
         display: grid;
-        grid-template-rows: repeat(auto, 1fr);
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
         gap: 6px;
         line-height: 17px;
         @media screen and (max-width: 768px) {
@@ -272,64 +267,67 @@ let products = data.products;
     }
   }
 </style>
-<div id="Engine">
-  <div class="Engine-bg-title">
-    <h2>合宙Air8000系列工业引擎</h2>
-  </div>
-  <div class="container-nav">
-    <a>
-      <div class="content-box-title active">Air8000系列对比</div>
-    </a>
-    {
-      products.map((product: any) => {
-        return (
-          <a>
-            <div>{product.name}</div>
-          </a>
-        );
-      })
-    }
-  </div>
-  <!-- 对比表 -->
-  <div class="content-box active">
-    <div class="content-box-title">合宙Air8000系列工业引擎对比表</div>
-    <div class="content-box-contrast">
+<section id="Engine">
+  <FadeIn>
+    <div class="Engine-bg-title">
+      <h2>合宙Air8000系列工业引擎</h2>
+    </div>
+    <div class="container-nav">
+      <a>
+        <div class="content-box-title active">Air8000系列对比</div>
+      </a>
       {
-        models.models.map((model: any) => (
-          <div>
-            <ul>
-              {model.map((item: any) => {
-                // 定义需要特殊处理的图片列表
-                const specialImages = [
-                  "Air8000W.png",
-                  "Air8000.png",
-                  "Air8000T.png",
-                  "Air8000G.png",
-                ];
-
-                return (
-                  <li>
-                    {typeof item === "string" &&
-                    specialImages.includes(item) ? (
-                      // 如果是特殊图片则渲染img标签
-                      <img
-                        src={`/images/${item}`}
-                        alt={item.replace(".png", "")}
-                        style="width: auto; height: 94px;"
-                      />
-                    ) : (
-                      // 否则正常渲染文本
-                      item
-                    )}
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-        ))
+        products.map((product: any) => {
+          return (
+            <a>
+              <div>{product.name}</div>
+            </a>
+          );
+        })
       }
     </div>
-  </div>
+
+    <!-- 对比表 -->
+    <div class="content-box active">
+      <div class="content-box-title">合宙Air8000系列工业引擎对比表</div>
+      <div class="content-box-contrast">
+        {
+          models.models.map((model: any) => (
+            <div>
+              <ul>
+                {model.map((item: any) => {
+                  // 定义需要特殊处理的图片列表
+                  const specialImages = [
+                    "Air8000W.png",
+                    "Air8000.png",
+                    "Air8000T.png",
+                    "Air8000G.png",
+                  ];
+
+                  return (
+                    <li>
+                      {typeof item === "string" &&
+                      specialImages.includes(item) ? (
+                        // 如果是特殊图片则渲染img标签
+                        <img
+                          src={`/images/${item}`}
+                          alt={item.replace(".png", "")}
+                          style="width: auto; height: 94px;"
+                        />
+                      ) : (
+                        // 否则正常渲染文本
+                        item
+                      )}
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </FadeIn>
   <!-- 8000系列工业引擎 -->
   {
     products.map((product: any) => {
@@ -416,7 +414,7 @@ let products = data.products;
       );
     })
   }
-</div>
+</section>
 <script>
   import $ from "jquery";
 

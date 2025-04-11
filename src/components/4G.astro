@@ -5,6 +5,8 @@ let data=await getProductModel();
 let data2=await getProductcomparison();
 const products = data.module;
 const comparisons=data2.model_comparison;
+import FadeIn from "./fadeIn.astro";
+
 ---
 
 <style lang="less">
@@ -133,13 +135,12 @@ const comparisons=data2.model_comparison;
             flex-wrap: wrap;
             //每个盒子
             > div {
-              padding: 0 50px;
-              flex: 1;
+              // padding: 0 50px;
+              flex: 1 1 26%;
               display: flex;
               flex-direction: column;
               justify-content: center;
               align-items: center;
-              // border: 1px solid rgba(105, 105, 105, 1);
               cursor: pointer;
               .border();
               @media screen and (max-width: 768px) {
@@ -170,7 +171,7 @@ const comparisons=data2.model_comparison;
               > div {
                 display: flex;
                 align-content: center;
-            
+                width: 100%;
                 // 每个图片
                 >div{
                   flex: 1;
@@ -187,13 +188,12 @@ const comparisons=data2.model_comparison;
                     }
                   }
                   .pic{
-                    width: 100px;
+                    width: 76px;
                     height: 100%;
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                    padding: 5px 12px;
-                    margin : 0 16px;
+                    padding: 5px 0;
                     @media screen and (max-width: 768px) {
                       width: 47px;
                       padding: 0;
@@ -326,7 +326,8 @@ const comparisons=data2.model_comparison;
     }
   }
 </style>
-<div id="fourG">
+<section id="fourG">
+  <FadeIn>  
   <div class="title">
     <h2>4G模组</h2>
   </div>
@@ -438,7 +439,8 @@ const comparisons=data2.model_comparison;
       <div>综合型号推荐</div>
     </div>
   </div>
-</div>
+</FadeIn>
+</section>
 <script>
   import $ from "jquery"
   $(function($){
