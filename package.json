@@ -11,7 +11,9 @@
   "dependencies": {
     "@types/jquery": "^3.5.32",
     "astro": "^5.4.1",
+    "autoprefixer": "^10.4.21",
     "jquery": "^3.7.1",
+    "postcss": "^8.5.3",
     "swiper": "^11.2.6"
   },
   "devDependencies": {

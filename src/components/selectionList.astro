@@ -1,0 +1,90 @@
+---
+import { api } from "../api/index.ts";
+let selectData = await api.getSelect();
+---
+
+<style>
+  .selectionList {
+    .allcontent {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 10px;
+      .selected-box {
+        @media screen and (max-width: 768px) {
+          width: 100%;
+          margin-top: 4px;
+          font-size: 1rem;
+        }
+        form {
+          padding: 0 40px 0 0;
+          display: flex;
+          align-items: center;
+          @media screen and (max-width: 768px) {
+            padding: 0;
+          }
+          .select-title {
+            white-space: nowrap;
+            margin-right: 3px;
+            font-weight: 600;
+          }
+          & > div {
+            display: flex;
+            flex: 1;
+          }
+          label {
+            display: flex;
+            height: auto;
+            padding: 0 6px;
+            cursor: pointer;
+            width: 50%;
+            @media screen and (max-width: 768px) {
+              width: 33%;
+            }
+            input {
+              cursor: pointer;
+              margin-right: 2px;
+              @media screen and (max-width: 768px) {
+                transform: scale(0.6);
+                transform-origin: center;
+              }
+            }
+            span {
+              white-space: nowrap;
+              &:hover {
+                color: @primary-blue;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+</style>
+<div class="selectionList">
+  <div class="allcontent">
+    {
+      Object.entries(selectData).map(([key, value]) => (
+        <div class="selected-box">
+          <form class="select-form">
+            <span class="select-title">{key}:</span>
+            <div>
+              {(value as [string | number]).map(
+                (item: string | number, index: number) => (
+                  <label>
+                    <input
+                      type="radio"
+                      name={key}
+                      value={item}
+                      checked={index === 0}
+                    />
+                    <span class="selected">{item}</span>
+                  </label>
+                )
+              )}
+            </div>
+          </form>
+        </div>
+      ))
+    }
+  </div>
+</div>

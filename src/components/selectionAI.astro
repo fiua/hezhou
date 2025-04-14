@@ -1,0 +1,117 @@
+---
+
+---
+
+<style>
+  .selectionAI {
+    p {
+      text-align: center;
+      padding: 20px 0;
+      font-size: 14px;
+      @media screen and (max-width: 768px) {
+        font-size: 1rem;
+      }
+    }
+    .search-input {
+      width: 90%;
+      height: 75px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0 auto;
+      position: relative;
+      @media screen and (max-width: 768px) {
+        width: 97%;
+      }
+      .search-input {
+        border-color: #595959;
+        background-color: #fff;
+        border: 1px solid #b8b8b8;
+        border-radius: 30px;
+        color: #191919;
+        font-size: 16px;
+        height: 56px;
+        line-height: 24px;
+        outline: none;
+        padding: 8px 44px;
+        position: absolute;
+        z-index: 1001;
+        box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.078);
+        @media screen and (max-width: 768px) {
+          font-size: 1rem;
+          height: 34px;
+          padding: 8px 40px;
+        }
+      }
+      .close-iocn {
+        background-image: url(../assets/cancel-icon.svg);
+        background-position: 50% 50%;
+        background-repeat: no-repeat;
+        background-size: 100%;
+        cursor: pointer;
+        height: 12px;
+        margin-top: -6px;
+        position: absolute;
+        right: 86px;
+        top: 50%;
+        width: 12px;
+        z-index: 1001;
+        transition: all 0.3s;
+        @media screen and (max-width: 768px) {
+          right: 25px;
+        }
+        &:hover {
+          background-image: url(../assets/cancel-icon-h.png);
+        }
+      }
+      .submit-icon {
+        background-color: transparent;
+        border: none;
+        color: #575d6c;
+        cursor: pointer;
+        height: 18px;
+        left: 80px;
+        line-height: 0;
+        margin-top: -9px;
+        outline: none;
+        padding: 0;
+        position: absolute;
+        top: 50%;
+        width: 18px;
+        z-index: 1001;
+        @media screen and (max-width: 768px) {
+          left: 22px;
+        }
+        i {
+          background: url(../assets/icon_search.svg);
+          background-position: 50%;
+          background-size: 133% 133%;
+          display: inline-block;
+          height: 18px;
+          width: 18px;
+          transition: all 0.2s;
+          &:hover {
+            filter: brightness(0) saturate(100%);
+          }
+        }
+      }
+    }
+  }
+</style>
+
+<div class="selectionAI">
+  <p>输入您的简要消息，通过AI帮助您选型，进一步查阅产品资料，开发指南等信息</p>
+  <div class="search-input">
+    <input
+      class="search-input inputSub"
+      maxlength="128"
+      type="text"
+      autocomplete="off"
+      placeholder="搜索产品文档、开发指南等"
+    />
+    <div class="close-iocn"></div>
+    <div class="submit-icon">
+      <i></i>
+    </div>
+  </div>
+</div>

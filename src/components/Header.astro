@@ -257,7 +257,12 @@ import Search from "./search.astro";
   <div class="header-container">
     <div class="header-left">
       <a href="/">
-        <img src={`${logo.url}`} alt={`${logo.alt}`} class="header-logo" />
+        <img
+          src={`${logo.url}`}
+          alt={`${logo.alt}`}
+          class="header-logo"
+          loading="lazy"
+        />
       </a>
       <nav class="nav-menu">
         {
