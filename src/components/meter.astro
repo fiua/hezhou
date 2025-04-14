@@ -1,8 +1,12 @@
 ---
-import { getMeter } from "../api/index.js";
-let contentData = await getMeter();
+import { api } from "../api/index.js";
+let contentData = await api.getMeter();
 let { air9000, air9000P } = contentData;
 import FadeIn from "./fadeIn.astro";
+import { Image } from "astro:assets";
+import Air9000 from "../assets/images/meter/carousel-Air9000.png";
+import Air9000P from "../assets/images/meter/carousel-Air9000P.png";
+import Power from "../assets/images/meter/carousel-power.png";
 ---
 
 <style lang="less">
@@ -189,11 +193,7 @@ import FadeIn from "./fadeIn.astro";
             <h3 class="title">{air9000.name}</h3>
             <div class="text-content">
               <div class="pic">
-                <img
-                  src="/images/carousel-Air9000P.png"
-                  alt=""
-                  loading="lazy"
-                />
+                <Image src={Air9000} alt="Air9000" />
               </div>
               <div class="context">
                 <div class="left">
@@ -245,7 +245,7 @@ import FadeIn from "./fadeIn.astro";
                 <p>超轻超小，单手可握，独立风扇，长时间工作无压力</p>
               </div>
               <div class="pic">
-                <img src="/images/carousel-power.png" alt="" loading="lazy" />
+                <Image src={Power} alt="可调稳压直流电源" />
               </div>
             </div>
           </div>
@@ -257,11 +257,7 @@ import FadeIn from "./fadeIn.astro";
             <h3 class="title">{air9000P.name}</h3>
             <div class="text-content">
               <div class="pic">
-                <img
-                  src="/images/carousel-Air9000P.png"
-                  alt=""
-                  loading="lazy"
-                />
+                <Image src={Air9000P} alt="air9000P" />
               </div>
               <div class="context">
                 <div class="left">

@@ -1,0 +1,91 @@
+---
+const { comparisons } = Astro.props;
+---
+
+<style lang="less">
+  .right-2 {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-evenly;
+    padding: 20px 0;
+    @media screen and (max-width: 768px) {
+    }
+    //每个横条
+    a {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      width: 100%;
+      padding: 0 20px;
+      border-bottom: 0.8px solid #eee;
+      @media screen and (max-width: 768px) {
+        padding: 0;
+        font-size: 0.6rem;
+      }
+      &:nth-of-type(1) {
+        font-weight: 600;
+        h5 {
+          text-align: center;
+          font-weight: 600;
+          font-size: 14px;
+          @media screen and (max-width: 768px) {
+            font-size: 0.8rem;
+          }
+        }
+      }
+      h5 {
+        width: 10%;
+        text-align: center;
+
+        @media screen and (max-width: 768px) {
+          font-size: 0.8rem;
+          font-weight: 400;
+        }
+      }
+      &:hover {
+        .boxLinear();
+        h5 {
+          color: @primary-blue;
+        }
+      }
+      > ul {
+        flex: 1;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        // padding: 0 50px;
+        cursor: pointer;
+        li {
+          width: 15%;
+          text-align: center;
+          @media screen and (max-width: 768px) {
+          }
+        }
+      }
+    }
+  }
+</style>
+<div class="right-2">
+  {
+    comparisons.map((item: any) => (
+      <a
+        href={
+          item.model === "模型型号"
+            ? ""
+            : `https://docs.openluat.com/${item.model.toLowerCase()}`
+        }
+        target="_blank"
+      >
+        <h5>{item.model}</h5>
+        <ul>
+          {Object.entries(item)
+            .filter(([key]) => key !== "model") // 过滤掉 model 字段
+            .map(([key, value]) => (
+              <li>{value || ""}</li>
+            ))}
+        </ul>
+      </a>
+    ))
+  }
+</div>

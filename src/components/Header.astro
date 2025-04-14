@@ -1,6 +1,6 @@
 ---
-import { getHeader } from "../api/index.js";
-let header = await getHeader();
+import { api } from "../api/index.ts";
+let header = await api.getHeader();
 let { logo, left, right } = header.data;
 let mobileHeader = left.concat(right);
 import Search from "./search.astro";

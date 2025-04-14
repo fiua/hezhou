@@ -1,7 +1,15 @@
 ---
-import { getConnect } from "../api/index.js";
-let qrcodeData = await getConnect();
+import { api } from "../api/index.js";
+let qrcodeData = await api.getConnect();
 import FadeIn from "./fadeIn.astro";
+import { Image } from "astro:assets";
+const images = import.meta.glob("../assets/images/connect/*.{png,jpg,jpeg}", {
+  eager: true,
+  import: "default",
+});
+const availableImages = new Set(
+  Object.keys(images).map((key) => key.split("/").pop())
+);
 ---
 
 <style lang="less">
@@ -113,12 +121,20 @@ import FadeIn from "./fadeIn.astro";
                 target="_blank"
                 href={item.link}
               >
-                <img
-                  loading="lazy"
-                  src={item.src}
-                  alt={item.alt}
-                  class="qrcode-img"
-                />
+                {typeof item.img === "string" &&
+                availableImages.has(item.img) ? (
+                  <Image
+                    class="qrcode-img"
+                    src={
+                      images[
+                        `../assets/images/connect/${item.img}`
+                      ] as ImageMetadata
+                    }
+                    alt={item.title}
+                  />
+                ) : (
+                  item.img
+                )}
                 <div class="contact-info">
                   <h6>{item.title}</h6>
                   <p>{item.description}</p>
@@ -126,12 +142,20 @@ import FadeIn from "./fadeIn.astro";
               </a>
             ) : (
               <div class="qrcode-item">
-                <img
-                  loading="lazy"
-                  src={item.src}
-                  alt={item.alt}
-                  class="qrcode-img"
-                />
+                {typeof item.img === "string" &&
+                availableImages.has(item.img) ? (
+                  <Image
+                    class="qrcode-img"
+                    src={
+                      images[
+                        `../assets/images/connect/${item.img}`
+                      ] as ImageMetadata
+                    }
+                    alt={item.title}
+                  />
+                ) : (
+                  item.img
+                )}
                 <div class="contact-info">
                   <h6>{item.title}</h6>
                   <p>{item.description}</p>

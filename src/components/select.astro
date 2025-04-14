@@ -1,6 +1,6 @@
 ---
-import { getSelect } from "../api/index.js";
-let selectData = await getSelect();
+import { api } from "../api/index.ts";
+let selectData = await api.getSelect();
 ---
 
 <style lang="less">

@@ -2,6 +2,16 @@
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
+import { Image } from "astro:assets";
+// pc端
+import banner1pc from "../assets/images/banner-carousel/banner-1.mp4";
+import banner2pc from "../assets/images/banner-carousel/banner-2.mp4";
+import banner3pc from "../assets/images/banner-carousel/banner-3.jpg";
+
+//移动端图片
+import banner1 from "../assets/images/banner-carousel/banner-1.jpeg";
+import banner2 from "../assets/images/banner-carousel/banner-2.jpg";
+import banner3 from "../assets/images/banner-carousel/banner-3.jpeg";
 ---
 
 <style lang="less">
@@ -160,15 +170,10 @@ import "swiper/css/navigation";
     <div class="swiper-wrapper">
       <div class="swiper-slide">
         <video autoplay loop muted>
-          <source src="/images/banner-1.mp4" type="video/mp4" />
+          <source src={banner1pc} type="video/mp4" />
         </video>
         <!-- 移动端img -->
-        <img
-          src="/images/banner-1.jpeg"
-          alt="工业引擎"
-          class="m-pic"
-          loading="lazy"
-        />
+        <Image src={banner1} alt="工业引擎" class="m-pic" />
         <a href="#Engine">
           <div class="content">
             <h5>工业引擎</h5>
@@ -178,14 +183,9 @@ import "swiper/css/navigation";
       </div>
       <div class="swiper-slide">
         <video autoplay loop muted>
-          <source src="/images/banner-2.mp4" type="video/mp4" />
+          <source src={banner2pc} type="video/mp4" />
         </video>
-        <img
-          src="/images/banner-2.jpg"
-          alt="工业引擎"
-          class="m-pic"
-          loading="lazy"
-        />
+        <Image src={banner2} alt="工业引擎" class="m-pic" />
         <a href="#fourG">
           <div class="content">
             <h5>4G模组</h5>
@@ -195,14 +195,9 @@ import "swiper/css/navigation";
       </div>
       <div class="swiper-slide">
         <div class="pic">
-          <img src="/images/banner-3.jpg" alt="" loading="lazy" />
+          <Image src={banner3pc} alt="" />
         </div>
-        <img
-          src="/images/banner-3.jpeg"
-          alt="工业引擎"
-          class="m-pic"
-          loading="lazy"
-        />
+        <Image src={banner3} alt="工业引擎" class="m-pic" />
 
         <a href="#meter">
           <div class="content">
@@ -213,14 +208,9 @@ import "swiper/css/navigation";
       </div>
       <div class="swiper-slide">
         <div class="pic">
-          <img src="/images/banner-3.jpg" alt="" loading="lazy" />
+          <Image src={banner3pc} alt="" />
         </div>
-        <img
-          src="/images/banner-3.jpeg"
-          alt="工业引擎"
-          class="m-pic"
-          loading="lazy"
-        />
+        <Image src={banner3} alt="工业引擎" class="m-pic" />
 
         <a href="#cloud">
           <div class="content">

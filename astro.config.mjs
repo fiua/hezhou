@@ -10,6 +10,6 @@ export default defineConfig({
                     additionalData: `@import "/src/style/reset.less";`
                 }
             }
-        }
+        },
     }
 });

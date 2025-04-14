@@ -1,9 +1,19 @@
 ---
-import { getAir8000Models, getProducts8000 } from "../api/index.js";
-let models = await getAir8000Models();
-let data = await getProducts8000();
+import { api } from "../api/index.ts";
+// 8000系列引擎数据
+let models = await api.getAir8000Models();
+let data = await api.getProducts8000();
+
 let products = data.products;
 import FadeIn from "./fadeIn.astro";
+import { Image } from "astro:assets";
+const images = import.meta.glob("../assets/images/engine/*.{png,jpg,jpeg}", {
+  eager: true,
+  import: "default",
+});
+const availableImages = new Set(
+  Object.keys(images).map((key) => key.split("/").pop())
+);
 ---
 
 <style lang="less">
@@ -296,26 +306,20 @@ import FadeIn from "./fadeIn.astro";
             <div>
               <ul>
                 {model.map((item: any) => {
-                  // 定义需要特殊处理的图片列表
-                  const specialImages = [
-                    "Air8000W.png",
-                    "Air8000.png",
-                    "Air8000T.png",
-                    "Air8000G.png",
-                  ];
-
                   return (
                     <li>
-                      {typeof item === "string" &&
-                      specialImages.includes(item) ? (
-                        // 如果是特殊图片则渲染img标签
-                        <img
-                          src={`/images/${item}`}
+                      {typeof item === "string" && availableImages.has(item) ? (
+                        // 从 glob 映射中取出资源对象（而不是字符串路径）
+                        <Image
+                          src={
+                            images[
+                              `../assets/images/engine/${item}`
+                            ] as ImageMetadata
+                          }
                           alt={item.replace(".png", "")}
                           style="width: auto; height: 94px;"
                         />
                       ) : (
-                        // 否则正常渲染文本
                         item
                       )}
                     </li>
@@ -368,10 +372,13 @@ import FadeIn from "./fadeIn.astro";
                     </div>
                     <div class="spec-image">
                       {product.name === "Air8000" && (
-                        <img
-                          src={`/${product.name}.png`}
-                          alt="Product Image"
-                          loading="lazy"
+                        <Image
+                          src={
+                            images[
+                              `../assets/images/engine/${product.name}Detail.png`
+                            ] as ImageMetadata
+                          }
+                          alt="Air8000Detail"
                         />
                       )}
                     </div>
