@@ -1,0 +1,85 @@
+---
+let Air780data = Astro.props.Air780data;
+---
+
+<style lang="less">
+  .container {
+    font-size: 12px;
+    .title {
+      font-size: 20px;
+      font-weight: 600;
+      padding: 25px 0;
+    }
+    .box {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      .box-item {
+        background-color: #fff;
+        transition: all 0.3s;
+        cursor: pointer;
+        .boxShadow();
+        padding: 12px;
+        border-radius: 12px;
+        .subtitle {
+          font-size: 16px;
+          font-weight: 600;
+        }
+        .description {
+          padding-top: 10px;
+          &:empty {
+            display: none;
+          }
+        }
+        &:nth-of-type(1) {
+          grid-row: span 2;
+        }
+        &:hover {
+          .boxLinear();
+        }
+      }
+    }
+  }
+</style>
+{
+  Air780data.products.map((item: any) => {
+    return (
+      <div id={item.name}>
+        <div class="container">
+          <div class="title">
+            <div>{item.title.title1}</div>
+            <div>{item.title.title2}</div>
+          </div>
+          <div class="box">
+            <div class="box-item">
+              {item.sections.map((i: any) => {
+                return (
+                  <div>
+                    <div class="subtitle">{i.subtitle}</div>
+                    <div class="description">
+                      {i.description.map((desc: any) => (
+                        <p>{desc}</p>
+                      ))}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+            {item.cards.map((card: any) => {
+              return (
+                <div class="box-item">
+                  <div class="subtitle">{card.title}</div>
+                  <div class="description">
+                    {card.items.map((t: any) => {
+                      return <div>{t}</div>;
+                    })}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+    );
+  })
+}

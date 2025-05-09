@@ -31,22 +31,36 @@
       content="上海合宙通信科技有限公司是一家专注于通信模组和主控MCU芯片的研发生产企业,提供4G、5G、GNSS、WiFi、NB-IoT等通信模组与解决方案,广泛应用于智能电表、智能家居、智慧城市、车联网等领域,为客户提供从芯片、模组到整体解决方案的一站式服务。"
     />
     <meta property="og:type" content="website" />
-  </head>
+    <style>
+      .bg {
+        /* width: 100%;
+        height: 200px;
+        /* background: linear-gradient(to right, #e3f4ff, #f5f3ff); */
+        /* background: linear-gradient(
+          to right,
+          rgb(227, 244, 255),
+          rgb(230, 255, 245) * /
+        ); */
+      }
+    </style></head
+  >
+
   <body>
+    <div class="bg"></div>
     <video autoplay loop muted playsinline>
-      <source src="/images/background.mp4" type="video/mp4" />
+      <source src="/images/bg.mp4" type="video/mp4" />
     </video>
     <slot />
   </body>
 </html>
 
 <style lang="less">
-  html,
-  body {
-    margin: 0;
-    width: 100%;
-    overflow-x: hidden; /* 禁用水平滚动 */
-  }
+  // html,
+  // body {
+  //   margin: 0;
+  //   width: 100%;
+  //   overflow-x: hidden; /* 禁用水平滚动 */
+  // }
   video {
     position: fixed;
     top: 50%;

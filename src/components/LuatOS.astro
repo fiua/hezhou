@@ -1,0 +1,290 @@
+---
+let AirLuat = Astro.props.AirLuat;
+let Airpic = Astro.props.Airpic;
+---
+
+<style lang="less">
+  .engine-luat {
+    background-color: #fff;
+    @media screen and (max-width: 768px) {
+      width: 100%;
+      // overflow-x: auto;
+    }
+    .point {
+      position: sticky;
+      top: 63px;
+      background-color: #cce2ff;
+      transition: top 0.3s linear;
+      @media screen and (max-width: 768px) {
+        // width: 100%;
+        top: 48px;
+      }
+      .feature {
+        &:hover {
+          background-color: #cce2ff;
+        }
+        .model {
+          font-weight: 700;
+          font-size: 16px;
+          display: flex;
+          // align-items: flex-end;
+          justify-content: flex-start;
+          @media screen and (max-width: 768px) {
+            font-weight: 400;
+            font-size: 8px;
+            white-space: nowrap;
+          }
+          span {
+            line-height: 50px;
+            white-space: nowrap;
+
+            @media screen and (max-width: 768px) {
+              line-height: 15px;
+            }
+          }
+          .link {
+            display: flex;
+            font-size: 10px;
+            @media screen and (max-width: 768px) {
+              display: none;
+            }
+          }
+          a {
+            font-size: 10px;
+            color: @primary-blue;
+            margin-left: 10px;
+            line-height: 10px;
+            white-space: nowrap;
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+        }
+      }
+    }
+    .content {
+      display: grid;
+      // grid-template-columns: repeat(2, 1fr);
+      .module {
+        &:nth-of-type(3) {
+          grid-row: span 2;
+        }
+        h3 {
+          padding: 5px 10px;
+          background-color: #f0f6ff;
+        }
+        .module-content {
+        }
+      }
+    }
+    .feature {
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid #cce2ff;
+      &:hover {
+        background-color: #f3f8ff;
+      }
+      .model {
+        // flex: 1;
+        width: 25%;
+        border-right: 1px solid #cce2ff;
+        font-size: 10px;
+        padding-left: 15px;
+        white-space: pre-line;
+        width: 100%;
+        align-self: stretch;
+        display: flex;
+        align-items: center;
+        font-weight: normal;
+        overflow: hidden;
+        word-wrap: break-word;
+        @media screen and (max-width: 768px) {
+          font-size: 5px;
+          padding-left: 2px;
+        }
+        &:last-child {
+          border-right: none;
+        }
+      }
+    }
+    .pic {
+      // display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      img {
+        height: 100vh;
+      }
+    }
+  }
+</style>
+<div class="engine-luat">
+  <div class="point">
+    {
+      Object.entries(AirLuat.point).map(([key, value]: [string, any]) => (
+        <div class="feature">
+          <div class="model">{key}</div>
+          {value.map((i: string, index: number) => {
+            return (
+              <div class="model">
+                <span>{i}</span>
+                <div class="link">
+                  <a href={`${i}`} class="detail">
+                    详情
+                  </a>
+                  <a
+                    href={`https://docs.openluat.com/${i.split("-")[0].toLowerCase()}`}
+                    target="_blank"
+                  >
+                    文档
+                  </a>
+                  {/* <a
+                    href={`https://docs.openluat.com/${i.split("-")[0].toLowerCase()}`}
+                    target="_blank"
+                  >
+                    图片
+                  </a> */}
+                  {/* <div class="pic">
+                    <img src={Airpic[index].src} alt={Airpic[index].alt} />
+                  </div> */}
+                  {/* <div class="pic">
+                    <img src="https://official.openluat.com/uploads/images/2025-04-24/tJJytZMctlhOIZA4uhyGaDECQuOruzmUCcnbDR7V.png" />
+                  </div> */}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      ))
+    }
+  </div>
+  <div class="content">
+    {
+      AirLuat.data.map((item: any) =>
+        Object.entries(item).map(
+          ([moduleName, moduleContent]: [string, any]) => (
+            <div class="module">
+              <h3>{moduleName}</h3>
+              <div class="module-content">
+                {Object.entries(moduleContent).map(
+                  ([feature, values]: [string, any]) => (
+                    <div class="feature">
+                      <div class="model">{feature}</div>
+                      {/* {AirLuat.point["功能点"].map((model: string) => (
+                        <div class="model">
+                          {values[model] === true
+                            ? "√"
+                            : values[model] === false
+                              ? ""
+                              : String(values[model]).trim()}
+                        </div>
+                      ))} */}
+                      {values.map((model: string | boolean) => (
+                        <div class="model">
+                          {model === true
+                            ? "√"
+                            : model === false
+                              ? ""
+                              : String(model).trim()}
+                        </div>
+                      ))}
+                    </div>
+                  )
+                )}
+              </div>
+            </div>
+          )
+        )
+      )
+    }
+  </div>
+</div>
+
+<script>
+  import $ from "jquery";
+  $(function () {
+    let $detail = $(".detail");
+    $detail.on("click", function (e) {
+      e.preventDefault(); // 阻止默认跳转行为
+      let targetId = $(this).attr("href"); // 获取 href 值
+      let $container = $(this).closest("#Engine, #fourG");
+      //air8000的详情
+      if ($container.attr("id") === "Engine") {
+        //导航区
+        $("#Engine .container-nav a div").removeClass("active");
+        $("#Engine .container-nav a div")
+          .filter(function () {
+            return $(this).text().trim() === targetId;
+          })
+          .eq(0)
+          .addClass("active");
+        //内容区
+        $("#Engine .content-box").removeClass("active");
+        $("#" + targetId).addClass("active");
+        const el = $("#" + targetId);
+        if (el.length > 0) {
+          const domEl = el.get(0);
+          if (domEl) {
+            const offset = 150;
+            const top =
+              domEl.getBoundingClientRect().top + window.scrollY - offset;
+            window.scrollTo(0, top);
+          }
+        }
+      }
+      //4g的详情
+      if ($container.attr("id") === "fourG") {
+        //导航区
+        $("#fourG .content .left ul li span").removeClass("active");
+        $("#fourG .content .left ul li span")
+          .filter(function () {
+            return $(this).text().trim() === targetId;
+          })
+          .eq(0)
+          .addClass("active");
+        //内容区
+        $("#fourG .content .right > div").removeClass("active");
+        $("#" + targetId).addClass("active");
+        const el = $("#" + targetId);
+        if (el.length > 0) {
+          const domEl = el.get(0);
+          if (domEl) {
+            const offset = 150;
+            const top =
+              domEl.getBoundingClientRect().top + window.scrollY - offset;
+            window.scrollTo(0, top);
+          }
+        }
+      }
+    });
+    //把nav导航固定在页面上面
+    let lastScrollTop = 0;
+    const pointEl = $(".point")[0];
+    const pointE2 = $(".point")[1];
+
+    let ticking = false;
+
+    window.addEventListener("scroll", () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const scrollTop =
+            window.pageYOffset || document.documentElement.scrollTop;
+          const isMobile = window.innerWidth <= 768; // 判断是否是移动端
+          const visibleTop = isMobile ? "48px" : "63px";
+          if (scrollTop > lastScrollTop) {
+            pointEl.style.top = "0px";
+            pointE2.style.top = "0px";
+          } else {
+            pointEl.style.top = visibleTop;
+            pointE2.style.top = visibleTop;
+          }
+
+          lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+          ticking = false;
+        });
+
+        ticking = true;
+      }
+    });
+  });
+</script>

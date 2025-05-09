@@ -3,88 +3,491 @@ import { api } from "../api/index.ts";
 let selectData = await api.getSelect();
 ---
 
-<style>
+<style lang="less">
   .selectionList {
-    .allcontent {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-      gap: 10px;
-      .selected-box {
-        @media screen and (max-width: 768px) {
-          width: 100%;
-          margin-top: 4px;
-          font-size: 1rem;
-        }
-        form {
-          padding: 0 40px 0 0;
-          display: flex;
-          align-items: center;
+    .selection {
+      display: flex;
+      .allcontent {
+        flex: auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        gap: 5px;
+        .selected-box {
           @media screen and (max-width: 768px) {
-            padding: 0;
+            width: 100%;
+            margin-top: 4px;
+            font-size: 1rem;
           }
-          .select-title {
-            white-space: nowrap;
-            margin-right: 3px;
-            font-weight: 600;
-          }
-          & > div {
+          form {
+            padding: 0 40px 0 0;
             display: flex;
-            flex: 1;
-          }
-          label {
-            display: flex;
-            height: auto;
-            padding: 0 6px;
-            cursor: pointer;
-            width: 50%;
+            align-items: center;
             @media screen and (max-width: 768px) {
-              width: 33%;
+              padding: 0;
             }
-            input {
-              cursor: pointer;
-              margin-right: 2px;
-              @media screen and (max-width: 768px) {
-                transform: scale(0.6);
-                transform-origin: center;
-              }
-            }
-            span {
+            .select-title {
               white-space: nowrap;
-              &:hover {
-                color: @primary-blue;
+              margin-right: 3px;
+              font-weight: 600;
+            }
+            & > div {
+              display: flex;
+              flex: 1;
+            }
+            label {
+              display: flex;
+              height: auto;
+              padding: 0 6px;
+              cursor: pointer;
+              width: 50%;
+              @media screen and (max-width: 768px) {
+                width: 33%;
+              }
+              input {
+                cursor: pointer;
+                margin-right: 2px;
+                @media screen and (max-width: 768px) {
+                  transform: scale(0.6);
+                  transform-origin: center;
+                }
+              }
+              span {
+                white-space: nowrap;
+                &:hover {
+                  color: @primary-blue;
+                }
               }
             }
           }
         }
       }
     }
+    .inputSubmit {
+      margin-top: 20px;
+      display: flex;
+      .inputAI {
+        width: 80%;
+        p {
+          text-align: center;
+          padding: 20px 0;
+          font-size: 14px;
+          @media screen and (max-width: 768px) {
+            font-size: 1rem;
+          }
+        }
+        .search-input {
+          width: 100%;
+          height: 75px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          position: relative;
+          @media screen and (max-width: 768px) {
+            width: 97%;
+          }
+          .search-input {
+            border-color: #595959;
+            background-color: #fff;
+            border: 1px solid #b8b8b8;
+            border-radius: 8px;
+            color: #191919;
+            font-size: 16px;
+            height: 56px;
+            line-height: 24px;
+            outline: none;
+            padding: 8px 44px 8px 24px;
+            position: absolute;
+            box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.078);
+            @media screen and (max-width: 768px) {
+              font-size: 1rem;
+              height: 34px;
+              padding: 8px 40px;
+            }
+          }
+          .close-iocn {
+            background-image: url(../assets/cancel-icon.svg);
+            background-position: 50% 50%;
+            background-repeat: no-repeat;
+            background-size: 100%;
+            cursor: pointer;
+            height: 12px;
+            margin-top: -6px;
+            position: absolute;
+            right: 3%;
+            top: 50%;
+            width: 12px;
+            transition: all 0.3s;
+            @media screen and (max-width: 768px) {
+              right: 25px;
+            }
+            &:hover {
+              background-image: url(../assets/cancel-icon-h.png);
+            }
+          }
+        }
+      }
+      .submit {
+        margin-left: 15px;
+        display: flex;
+        align-items: center;
+        height: 75px;
+        .btn {
+          height: 56px;
+          display: inline-block;
+          padding: 8px 40px;
+          font-size: 15px;
+          line-height: 1;
+          border-radius: 6px;
+          color: #409eff; /* 主题色 */
+          background-color: #ecf5ff; /* 背景浅蓝 */
+          border: 1px solid #b3d8ff;
+          cursor: pointer;
+          transition: all 0.3s;
+          user-select: none;
+        }
+
+        .btn:hover {
+          color: white;
+          background-color: #409eff; /* hover时变成纯蓝色 */
+          border-color: #409eff;
+        }
+
+        .btn:active {
+          background-color: #337ecc; /* 按下时颜色更深 */
+          border-color: #337ecc;
+        }
+      }
+    }
+
+    .reply {
+      margin-top: 20px;
+      .messages {
+        width: 100%;
+        max-height: 300px;
+        overflow-y: scroll;
+        /* 滚动条 */
+        scrollbar-color: hsla(228, 7%, 74%, 0.6) transparent;
+        scrollbar-width: thin;
+        // height: 300px;
+        padding: 16px;
+        border-radius: 8px;
+        background-color: #fff;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        // margin-bottom: 20px;
+        font-size: 16px;
+        line-height: 1.6;
+        color: #333;
+        .loading {
+          text-align: center;
+        }
+      }
+    }
   }
 </style>
-<div class="selectionList">
-  <div class="allcontent">
-    {
-      Object.entries(selectData).map(([key, value]) => (
-        <div class="selected-box">
-          <form class="select-form">
-            <span class="select-title">{key}:</span>
-            <div>
-              {(value as [string | number]).map(
-                (item: string | number, index: number) => (
-                  <label>
-                    <input
-                      type="radio"
-                      name={key}
-                      value={item}
-                      checked={index === 0}
-                    />
-                    <span class="selected">{item}</span>
-                  </label>
-                )
-              )}
-            </div>
-          </form>
-        </div>
-      ))
+<style is:global>
+  .selectionList .reply .message {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #333;
+
+    p {
+      margin: 8px 0;
     }
+
+    ul {
+      padding-left: 20px;
+      margin: 10px 0;
+
+      li {
+        list-style-type: disc;
+        margin-bottom: 6px;
+      }
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 16px;
+      background-color: #fff;
+      white-space: nowrap;
+      th,
+      td {
+        border: 1px solid #ddd;
+        padding: 8px 12px;
+        text-align: center;
+      }
+
+      th {
+        background-color: #f0f0f0;
+        font-weight: bold;
+      }
+
+      tr:nth-child(even) {
+        background-color: #f9f9f9;
+      }
+
+      tr:hover {
+        background-color: #f1f1f1;
+      }
+    }
+  }
+</style>
+
+<section class="selectionList">
+  <div class="selection">
+    <div class="allcontent">
+      {
+        Object.entries(selectData).map(([key, value]) => (
+          <div class="selected-box">
+            <form class="select-form">
+              <span class="select-title">{key}:</span>
+              <div>
+                {(value as [string | number]).map(
+                  (item: string | number, index: number) => (
+                    <label>
+                      <input type="checkbox" name={key} value={item} />
+                      {/*  {...(index === 0 ? { checked: true } : {})} */}
+                      <span class="selected">{item}</span>
+                    </label>
+                  )
+                )}
+              </div>
+            </form>
+          </div>
+        ))
+      }
+    </div>
   </div>
-</div>
+  <!-- 输入框搜索按钮 -->
+  <div class="inputSubmit">
+    <div class="inputAI">
+      <div class="search-input">
+        <input
+          class="search-input inputSub"
+          maxlength="128"
+          type="text"
+          autocomplete="off"
+          placeholder="选型补充说明"
+        />
+        <div class="close-iocn"></div>
+      </div>
+    </div>
+    <div class="submit">
+      <button class="btn">搜索</button>
+    </div>
+  </div>
+
+  <div class="reply">
+    <div class="messages">
+      <div class="loading">
+        <p>点击搜索按钮。进行选型</p>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+  import $ from "jquery";
+  import { fetchEventSource } from "@microsoft/fetch-event-source";
+  import { marked } from "marked";
+  import { v4 as uuidv4 } from "uuid";
+
+  $(function () {
+    // 选择框
+    //计算title的宽度
+    const $selecttitle = $(".select-title");
+    const $selectForm = $(".select-form");
+    let titleWidth = 0;
+    $selecttitle.each(function (index: number, item: HTMLElement) {
+      const width = item.offsetWidth;
+      if (width > titleWidth) {
+        titleWidth = width;
+      }
+    });
+    $selecttitle.each(function (index, item) {
+      item.style.width = titleWidth + "px";
+    });
+    //拿到from数据
+    interface FormData {
+      [key: string]: string | number;
+    }
+    const formData: FormData = {};
+    //复用调用函数
+    function getFormData() {
+      $selectForm.each(function () {
+        const $form = $(this);
+        const key = $form.find(".select-title").text().replace(":", "").trim();
+        const $checkedInputs = $form.find('input[type="checkbox"]:checked');
+        const value = $checkedInputs.val();
+
+        $form.find('input[type="checkbox"]').siblings().css("color", "");
+
+        if (
+          $checkedInputs.length > 0 &&
+          (typeof value === "string" || typeof value === "number")
+        ) {
+          formData[key] = value;
+          $checkedInputs.siblings().css("color", "#1690ff");
+        } else {
+          //  如果没有任何选中，清除这个key
+          delete formData[key];
+        }
+      });
+    }
+
+    console.log("表单数据：", formData);
+    //当表单发生变化的时候，获取表单数据
+    $('.select-form input[type="checkbox"]').on("change", function () {
+      const $form = $(this).closest(".select-form"); // 找到当前表单块
+      const name = $(this).attr("name"); // 获取同组name
+
+      // 取消同组其他checkbox选中，只保留当前这个
+      $form.find(`input[name="${name}"]`).not(this).prop("checked", false);
+
+      // 重新收集表单数据
+      getFormData();
+      console.log("表单数据已更新：", formData);
+    });
+    //ipnut输入框
+    const $inputSub = $(".inputSub");
+    let realTimeValue = "";
+    $inputSub.on("input", function () {
+      realTimeValue = $(this).val() as string;
+    });
+
+    $(".close-iocn").on("click", function () {
+      $inputSub.val("");
+      realTimeValue = "";
+    });
+    // -----点击提交-------
+    // messages是需要追加的div
+    let messages = $(".messages").get(0) as HTMLDivElement;
+    let messageDiv: HTMLDivElement | null = null;
+    let scrollTimeout: ReturnType<typeof setTimeout> | null = null;
+    let controller: AbortController | null = null; // 把 controller 提到外面，全局保存
+    let isLoading = false; // 控制按钮状态，防止狂点
+    $(".btn").on("click", async function () {
+      // 每次点击都重置messageDiv
+      // console.log(realTimeValue);
+
+      // messages.innerHTML = "";
+      if (isLoading) {
+        console.log("请求进行中，请不要重复点击！");
+        return;
+      }
+      isLoading = true;
+      $(".btn").prop("disabled", true).text("加载中...");
+      $(".loading").remove();
+      if (controller) controller.abort(); // 取消之前的请求
+      controller = new AbortController();
+      let queryString = "查找";
+      const timeoutId = setTimeout(() => {
+        controller?.abort();
+        console.error("请求超时，已取消");
+      }, 15000); // 15秒超时
+
+      getFormData();
+      // 请求接口
+      Object.entries(formData).forEach(([key, value], index) => {
+        if (index !== 0) {
+          queryString += "，";
+        }
+        // 拼接每个属性到句子中
+        queryString += `${value}${key}。${realTimeValue}`;
+      });
+
+      // 添加句子末尾部分
+      queryString += "的模块有哪些？";
+
+      const payload = {
+        content: queryString,
+        request_id: uuidv4(),
+        bot_app_key:
+          "HRUpHmYAdboKTHzXtGjecMQebfifuWaSptNxRuiAHVdphDDhleKiKCmJjFkiqDaqmCaamgvJxrfzssdxtkkCpXCUknZikCrGBQFzTHXlOIgRORjkeKVsuIstpecKQQvH",
+        visitor_biz_id: "1",
+        session_id: uuidv4(),
+        visitor_labels: [],
+      };
+      try {
+        await fetchEventSource(
+          "https://wss.lke.cloud.tencent.com/v1/qbot/chat/sse",
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload),
+            signal: controller.signal,
+            onopen: async (res) => {
+              if (
+                res.ok &&
+                res.headers.get("content-type")?.includes("text/event-stream")
+              ) {
+                console.log("SSE连接成功");
+              } else {
+                throw new Error("SSE连接失败");
+              }
+            },
+
+            onmessage: async (ev) => {
+              try {
+                const data = JSON.parse(ev.data);
+
+                if (data.type === "error" && data.payload?.error) {
+                  if (!messageDiv) {
+                    // 第一次收到消息，创建一个div
+                    messageDiv = document.createElement("div");
+                    messageDiv.classList.add("message");
+                    // messageDiv.innerHTML = loadingMessage;
+                    messages.append(messageDiv);
+                  }
+                  messageDiv.innerHTML = data.payload.error.message;
+                  // console.error("服务器返回错误:", data.payload.error);
+                  // 这里你可以主动终止连接
+                  controller?.abort();
+                }
+                const content = data?.payload?.content;
+
+                if (!content) return;
+                if (!messageDiv) {
+                  // 第一次收到消息，创建一个div
+                  messageDiv = document.createElement("div");
+                  messageDiv.classList.add("message");
+                  // messageDiv.innerHTML = loadingMessage;
+                  messages.append(messageDiv);
+                }
+                // 直接追加文字，不新建div
+                // messageDiv.innerHTML = content;
+                if (content === queryString) {
+                  messageDiv.innerHTML = queryString;
+                } else {
+                  const html = marked.parse(content);
+                  messageDiv.innerHTML = queryString + html;
+                  // 防抖滚动：
+                  if (scrollTimeout) clearTimeout(scrollTimeout);
+                  scrollTimeout = setTimeout(() => {
+                    messages.scrollTo({
+                      top: messages.scrollHeight,
+                      behavior: "smooth",
+                    });
+                  }, 100);
+                }
+              } catch (e) {
+                console.error("解析 SSE 消息失败:", e);
+              }
+            },
+            onerror(err) {
+              console.error("SSE 错误:", err);
+              controller?.abort();
+            },
+            openWhenHidden: true,
+          }
+        );
+      } finally {
+        clearTimeout(timeoutId);
+        isLoading = false; // 结束时解除loading
+        $(".btn").prop("disabled", false).text("搜索");
+        $inputSub.val("");
+        realTimeValue = "";
+        console.log("请求完成");
+      }
+    });
+  });
+</script>

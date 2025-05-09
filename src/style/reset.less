@@ -2,8 +2,9 @@
 // 颜色与尺寸变量
 // ======================
 @font-color: #181818;         // 主文字颜色
-@bg-gradient-start: #e3f4ff;
-@bg-gradient-end: #f5f3ff;
+@gray-color:#717171;         // 主灰色
+@bg-gradient-start: rgb(227, 244, 255);
+@bg-gradient-end: rgb(245, 243, 255);
 @primary-blue: #1690ff;         // 主蓝色
 @whiteColor: #fff;              // 纯白色
 @maxwidth: 91%;                     // 容器最大宽度
@@ -12,8 +13,7 @@
 // ======================
 // 阴影效果
 .boxShadow() {
-  box-shadow: 0 0 16px rgba(0,0,0,0.08);
-  -webkit-box-shadow: 0 0 16px rgba(0,0,0,0.08);
+  box-shadow: 0 0 3px rgba(0,0,0,0.05);
 }
 .boxLinear(){
   background: linear-gradient(to right, @bg-gradient-start, @bg-gradient-end);
@@ -95,10 +95,8 @@ button {
   white-space: nowrap;
   text-align: center;
   background-image: none;
-  -webkit-box-shadow: 0 2px 0 rgba(0, 0, 0, 0.015);
   box-shadow: 0 2px 0 rgba(0, 0, 0, 0.015);
   cursor: pointer;
-  -webkit-transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
   transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
   -webkit-user-select: none;
   -moz-user-select: none;

@@ -1,0 +1,80 @@
+---
+
+---
+
+<style lang="less">
+  .ai-button {
+    width: 42px;
+    position: fixed;
+    // left: calc(58% + 613px);
+    right: -1%;
+    bottom: 100px;
+    transform: translateX(-100%);
+    z-index: 100;
+    cursor: pointer;
+    font-size: 14px;
+    background-color: #fff;
+    border-radius: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    @media screen and (max-width: 768px) {
+      display: none;
+    }
+    .wrap {
+      padding: 10px 0;
+      .ai-text {
+        width: 14px;
+        margin: 0 auto;
+        user-select: none;
+      }
+      .ai-icon {
+        width: 26px;
+        height: 26px;
+        .ai-icon1 {
+          background-image: url(/images/Ai-btn.png);
+          background-repeat: no-repeat;
+          background-size: 100%;
+          background-position: center center;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          .ai-icon2 {
+            img {
+              margin-top: 1px;
+            }
+          }
+        }
+      }
+    }
+
+    @media screen and (max-width: 768px) {
+      display: none;
+    }
+  }
+</style>
+<a class="ai-button">
+  <div class="wrap">
+    <div class="ai-icon">
+      <div class="ai-icon1">
+        <div class="ai-icon2">
+          <img src="/images/AiLine.apng" alt="" />
+        </div>
+      </div>
+    </div>
+    <div class="ai-text">AI助理</div>
+  </div>
+</a>
+
+<script>
+  import $ from "jquery";
+  $(() => {
+    $(".ai-button").on("click", () => {
+      if ($("#AiChat").css("display") == "flex") {
+        $("#AiChat").css("display", "none");
+      } else {
+        $("#AiChat").css("display", "flex");
+      }
+    });
+  });
+</script>

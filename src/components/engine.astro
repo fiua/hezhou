@@ -1,19 +1,13 @@
 ---
 import { api } from "../api/index.ts";
 // 8000系列引擎数据
+let { data: Air8000pic } = await api.getAir8000pic();
 let models = await api.getAir8000Models();
 let data = await api.getProducts8000();
-
+let Air8000Luat = await api.getAir8000Luat();
 let products = data.products;
+import Luat from "./LuatOS.astro";
 import FadeIn from "./fadeIn.astro";
-import { Image } from "astro:assets";
-const images = import.meta.glob("../assets/images/engine/*.{png,jpg,jpeg}", {
-  eager: true,
-  import: "default",
-});
-const availableImages = new Set(
-  Object.keys(images).map((key) => key.split("/").pop())
-);
 ---
 
 <style lang="less">
@@ -37,6 +31,7 @@ const availableImages = new Set(
         }
       }
     }
+    // tab栏切换
     .container-nav {
       width: 100%;
       display: flex;
@@ -94,7 +89,7 @@ const availableImages = new Set(
         }
       }
     }
-    // 公共
+    // Air8000公共
     .content-box {
       max-width: @maxwidth;
       margin: 0 auto;
@@ -102,178 +97,47 @@ const availableImages = new Set(
       @media screen and (max-width: 768px) {
         max-width: 100%;
       }
+      .luat {
+        display: block;
+        // @media screen and (max-width: 768px) {
+        //   display: block;
+        // }
+      }
+      // .mobile {
+      //   display: none;
+      //   @media screen and (max-width: 768px) {
+      //     display: none;
+      //   }
+      // }
+      .pic {
+        width: 60%;
+        margin: 0 auto;
+        @media screen and (max-width: 768px) {
+          margin-top: 5px;
+          width: 100%;
+        }
+      }
+
       &.active {
         display: block;
       }
-      .content-box-title {
-        font-size: 20px;
-        font-weight: 600;
-        display: flex;
-        justify-content: flex-start;
-        align-items: flex-end;
-        padding-top: 20px;
-        -webkit-background-clip: text;
-        color: @font-color;
-        @media screen and (max-width: 768px) {
-          width: @maxwidth;
-          font-size: 0.8rem;
-          padding-top: 0.6rem;
-          margin: 0 auto;
-        }
-        p:nth-last-child(1) {
-          padding-left: 20px;
-          font-size: 14px;
-          font-weight: 400;
-          @media screen and (max-width: 768px) {
-            font-size: 0.8rem;
-          }
-        }
-        &:nth-of-type(1) {
-          padding-bottom: 25px;
-          @media screen and (max-width: 768px) {
-            padding-bottom: 1rem;
-          }
-        }
-      }
-      // 对比表
-      .content-box-contrast {
-        display: flex;
-        justify-content: space-between;
-        box-shadow: 2px 2px 2px rgba(105, 105, 105, 0.1);
-        > div {
-          &:nth-of-type(1) {
-            font-weight: 700;
-          }
-          width: 100%;
-          &:nth-last-of-type(1) {
-            ul {
-              li {
-                border-right: none;
-              }
-            }
-          }
-          ul {
-            li {
-              text-indent: 10%;
-              padding: 3px;
-              border-right: 1px solid rgba(105, 105, 105, 0.1);
-              border-bottom: 1px solid rgba(105, 105, 105, 0.1);
-              font-size: 10px;
-              @media screen and (max-width: 768px) {
-                font-size: 0.6rem;
-                white-space: nowrap;
-                padding: 0;
-                img {
-                  height: 90% !important;
-                }
-              }
-              &:nth-of-type(2) {
-                height: 100px;
-                width: auto;
-                white-space: nowrap;
-                line-height: 100px;
-                @media screen and (max-width: 768px) {
-                  line-height: 3rem;
-                  height: 3rem;
-                }
-              }
-              &:nth-child(even) {
-                background-color: @bg-gradient-start;
-              }
-              &:nth-child(odd) {
-                background-color: @bg-gradient-start;
-              }
-              &:nth-last-of-type(1) {
-                border-bottom: none;
-              }
-            }
-          }
-        }
-      }
-      // 8000系列
-      .content-box-content {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 6px;
-        line-height: 17px;
-        @media screen and (max-width: 768px) {
-          line-height: 0.8rem;
-          gap: 0.4rem;
-          grid-template-columns: repeat(2, 1fr);
-        }
-        > div {
-          background-color: @whiteColor;
-          .boxShadow();
-          padding: 12px;
-          border-radius: 12px;
-          transition: 0.3s;
-          @media screen and (max-width: 768px) {
-            box-shadow: none;
-            .border();
-            padding: 0.4rem;
-          }
-          &:hover {
-            .boxLinear();
-            .bg-title {
-              color: @primary-blue;
-            }
-          }
-          p,
-          span {
-            @media screen and (max-width: 768px) {
-              font-size: 0.6rem !important;
-            }
-          }
-          &:hover {
-            box-shadow: rgba(44, 37, 111, 0.4) 1px 1px 6px 0px;
-          }
-          &:nth-of-type(1) {
-            grid-row: span 2;
-          }
-        }
 
-        .content {
-          cursor: pointer;
-
-          .interface-info > div {
-            display: flex;
-            justify-content: space-between;
-            margin-right: 20px;
-            @media screen and (max-width: 768px) {
-              margin-right: 0;
-            }
-            p {
-              display: inline-block;
-            }
-            span {
-              display: inline-block;
-            }
-          }
-          .bg-title {
-            font-size: 16px;
-            font-weight: 700;
-            color: @font-color;
-            margin-top: 6px;
-            @media screen and (max-width: 768px) {
-              font-size: 0.8rem;
-              margin-top: 2px;
-            }
-          }
-        }
-        .content:has(img) {
-          // width: 200%;
-          grid-column: span 2;
-        }
-
-        .content:nth-last-child(1) {
-          .combined-spec {
-            display: flex;
-            img {
-              width: 50%;
-            }
-          }
-        }
-      }
+      //   .content-box-content {
+      //     grid-template-columns: repeat(3, 1fr);
+      //     grid-template-rows: repeat(2, 1fr);
+      //     > div {
+      //       &:nth-of-type(1) {
+      //         // grid-row: span 1;
+      //       }
+      //       &:last-of-type(1) {
+      //         grid-row: span 1;
+      //         grid-area: auto;
+      //       }
+      //     }
+      //     .interface-info {
+      //       grid-area: unset;
+      //     }
+      //   }
     }
   }
 </style>
@@ -284,138 +148,33 @@ const availableImages = new Set(
     </div>
     <div class="container-nav">
       <a>
-        <div class="content-box-title active">Air8000系列对比</div>
+        <div class="content-box-title active">Air8000功能库</div>
       </a>
       {
-        products.map((product: any) => {
+        Air8000pic.map((item: any) => {
           return (
             <a>
-              <div>{product.name}</div>
+              <div>{item.title}</div>
             </a>
           );
         })
       }
     </div>
 
-    <!-- 对比表 -->
+    <!-- LuatOS -->
     <div class="content-box active">
-      <div class="content-box-title">合宙Air8000系列工业引擎对比表</div>
-      <div class="content-box-contrast">
-        {
-          models.models.map((model: any) => (
-            <div>
-              <ul>
-                {model.map((item: any) => {
-                  return (
-                    <li>
-                      {typeof item === "string" && availableImages.has(item) ? (
-                        // 从 glob 映射中取出资源对象（而不是字符串路径）
-                        <Image
-                          src={
-                            images[
-                              `../assets/images/engine/${item}`
-                            ] as ImageMetadata
-                          }
-                          alt={item.replace(".png", "")}
-                          style="width: auto; height: 94px;"
-                        />
-                      ) : (
-                        item
-                      )}
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
-          ))
-        }
+      <div class="luat">
+        <Luat AirLuat={Air8000Luat} Airpic={Air8000pic} />
       </div>
     </div>
   </FadeIn>
-  <!-- 8000系列工业引擎 -->
-  {
-    products.map((product: any) => {
-      // 先检查 product.title 是否存在，避免解构错误
-      const title1 = product.title?.title1 || "";
-      const title2 = product.title?.title2 || "";
-      return (
-        <div class="content-box">
-          <div class="Engine-title">
-            <div class="content-box-title">
-              <p>{title1}</p>
-              <p>{title2}</p>
-            </div>
-          </div>
-          <div class="content-box-content grid">
-            {product.data?.map((item: any) => (
-              <div class="content grid-item">
-                {/* 如果 item 中存在硬件规格或软件规格，渲染组合块 */}
-                {(item["硬件规格"] || item["软件规格"]) && (
-                  <div class="combined-spec">
-                    <div class="spec-group">
-                      {item["硬件规格"] && (
-                        <div>
-                          <p class="bg-title">硬件规格</p>
-                          {Array.isArray(item["硬件规格"])
-                            ? item["硬件规格"].map((i, idx) => <p>{i}</p>)
-                            : null}
-                        </div>
-                      )}
-                      {item["软件规格"] && (
-                        <div>
-                          <p class="bg-title">软件规格</p>
-                          {Array.isArray(item["软件规格"])
-                            ? item["软件规格"].map((i, idx) => <p>{i}</p>)
-                            : null}
-                        </div>
-                      )}
-                    </div>
-                    <div class="spec-image">
-                      {product.name === "Air8000" && (
-                        <Image
-                          src={
-                            images[
-                              `../assets/images/engine/${product.name}Detail.png`
-                            ] as ImageMetadata
-                          }
-                          alt="Air8000Detail"
-                        />
-                      )}
-                    </div>
-                  </div>
-                )}
 
-                {Object.entries(item).map(([key, value]) => {
-                  // 如果已经通过 combined-spec 渲染，则跳过硬件规格和软件规格
-                  if (key === "硬件规格" || key === "软件规格") {
-                    return null;
-                  }
-                  if (key === "接口数量" && typeof value === "object") {
-                    return (
-                      <div class="interface-info">
-                        <p class="bg-title">{key}</p>
-                        {Object.entries(value || {}).map(
-                          ([interfaceKey, interfaceValue]) => (
-                            <div>
-                              <p>{interfaceKey}</p>
-                              <p>{interfaceValue}</p>
-                            </div>
-                          )
-                        )}
-                      </div>
-                    );
-                  }
-                  return (
-                    <div>
-                      <p class="bg-title">{key}</p>
-                      {Array.isArray(value)
-                        ? value.map((i, idx) => <p>{i}</p>)
-                        : null}
-                    </div>
-                  );
-                })}
-              </div>
-            ))}
+  {
+    Air8000pic.map((item: any) => {
+      return (
+        <div class="content-box" id={item.title}>
+          <div class="pic">
+            <img src={`${item.src}?t=${Date.now()}`} alt={item.alt} />
           </div>
         </div>
       );
@@ -424,7 +183,6 @@ const availableImages = new Set(
 </section>
 <script>
   import $ from "jquery";
-
   $(function () {
     let $content = $("#Engine .content-box");
     let $contentnav = $("#Engine .container-nav a");

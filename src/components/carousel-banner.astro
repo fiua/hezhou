@@ -4,43 +4,62 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Image } from "astro:assets";
 // pc端
-import banner1pc from "../assets/images/banner-carousel/banner-1.mp4";
-import banner2pc from "../assets/images/banner-carousel/banner-2.mp4";
-import banner3pc from "../assets/images/banner-carousel/banner-3.jpg";
+
+import banner1pc from "../assets/images/banner-carousel/1.png";
+import banner2pc from "../assets/images/banner-carousel/2.png";
+import banner3pc from "../assets/images/banner-carousel/3.png";
 
 //移动端图片
-import banner1 from "../assets/images/banner-carousel/banner-1.jpeg";
-import banner2 from "../assets/images/banner-carousel/banner-2.jpg";
-import banner3 from "../assets/images/banner-carousel/banner-3.jpeg";
+import banner1 from "../assets/images/banner-carousel/1.png";
+import banner2 from "../assets/images/banner-carousel/2.png";
+import banner3 from "../assets/images/banner-carousel/3.png";
 ---
 
 <style lang="less">
-  @keyframes moveUp {
-    0% {
-      transform: translateY(40px);
-      opacity: 0;
-    }
-    100% {
-      transform: translateY(0);
-      opacity: 1;
-    }
-  }
+  // @keyframes moveUp {
+  //   0% {
+  //     transform: translateY(40px);
+  //     opacity: 0;
+  //   }
+  //   100% {
+  //     transform: translateY(0);
+  //     opacity: 1;
+  //   }
+  // }
   .swiper-container-banner {
-    // padding-top: 60px;
+    padding-top: 60px;
     width: 100%;
     height: auto;
     color: @font-color;
+    background-color: #f6faff;
     @media screen and (max-width: 768px) {
       padding-top: 48px;
     }
     .swiper {
+      aspect-ratio: 16 / 5;
       @media screen and (max-width: 768px) {
+        aspect-ratio: unset;
         height: 200px;
       }
       .swiper-wrapper {
         height: 100%;
         .swiper-slide {
           height: 100%;
+          .pic {
+            height: 100%;
+            position: relative;
+
+            img {
+              height: 100%;
+              position: absolute;
+              width: 100%;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+              object-fit: contain;
+              background-size: cover;
+            }
+          }
           @media screen and (max-width: 768px) {
           }
           .m-pic {
@@ -65,73 +84,74 @@ import banner3 from "../assets/images/banner-carousel/banner-3.jpeg";
               background-size: cover;
             }
           }
-          video {
-            height: 100%;
-            position: absolute;
-            height: 100%;
-            width: 100%;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: -1;
-            object-fit: cover;
-            background-size: cover;
-          }
-          .pic {
-            height: 100%;
-            position: absolute;
-            height: 100%;
-            width: 100%;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: -1;
-            object-fit: cover;
-            background-size: cover;
-            img {
-              height: 100%;
-            }
-          }
-          a {
-            animation: moveUp 0.1s ease-out;
-            margin-top: 145px;
-            margin-bottom: 160px;
-            margin-right: 50%;
-            margin-left: 12%;
-            display: block;
-            height: 100%;
-            z-index: 2;
-            @media screen and (max-width: 768px) {
-              margin: 0;
-            }
-            .content {
-              height: 100%;
-              max-width: 1184px;
-              height: auto;
-              margin: 0 auto;
-              @media screen and (max-width: 768px) {
-                margin-left: 10%;
-              }
+          // video {
+          //   height: 100%;
+          //   position: absolute;
+          //   height: 100%;
+          //   width: 100%;
+          //   top: 50%;
+          //   left: 50%;
+          //   transform: translate(-50%, -50%);
+          //   z-index: -1;
+          //   object-fit: cover;
+          //   background-size: cover;
+          // }
+          // .pic {
+          //   height: 100%;
+          //   position: absolute;
+          //   height: 100%;
+          //   width: 100%;
+          //   top: 50%;
+          //   left: 50%;
+          //   transform: translate(-50%, -50%);
+          //   z-index: -1;
+          //   object-fit: cover;
+          //   background-size: cover;
+          //   img {
+          //     height: 100%;
+          //   }
+          // }
+          // a {
+          //   animation: moveUp 0.1s ease-out;
+          //   margin-top: 145px;
+          //   margin-bottom: 160px;
+          //   margin-right: 50%;
+          //   margin-left: 12%;
+          //   display: block;
+          //   height: 100%;
+          //   z-index: 2;
+          //   @media screen and (max-width: 768px) {
+          //     margin: 0;
+          //   }
+          //   .content {
+          //     height: 100%;
+          //     max-width: 1184px;
+          //     height: auto;
+          //     margin: 0 auto;
+          //     display: none;
+          //     @media screen and (max-width: 768px) {
+          //       margin-left: 10%;
+          //     }
 
-              h5 {
-                margin-top: 30px;
-                font-size: 52px;
-                line-height: 80px;
-                font-weight: 700;
-                @media screen and (max-width: 768px) {
-                  font-size: 26px;
-                  line-height: 48px;
-                }
-              }
-              p {
-                font-size: 24px;
-                line-height: 48px;
-                @media screen and (max-width: 768px) {
-                  font-size: 16px;
-                }
-              }
-            }
-          }
+          //     h5 {
+          //       margin-top: 30px;
+          //       font-size: 52px;
+          //       line-height: 80px;
+          //       font-weight: 700;
+          //       @media screen and (max-width: 768px) {
+          //         font-size: 26px;
+          //         line-height: 48px;
+          //       }
+          //     }
+          //     p {
+          //       font-size: 24px;
+          //       line-height: 48px;
+          //       @media screen and (max-width: 768px) {
+          //         font-size: 16px;
+          //       }
+          //     }
+          //   }
+          // }
         }
       }
     }
@@ -169,46 +189,52 @@ import banner3 from "../assets/images/banner-carousel/banner-3.jpeg";
   <div class="swiper">
     <div class="swiper-wrapper">
       <div class="swiper-slide">
-        <video autoplay loop muted>
+        <!-- <video autoplay loop muted>
           <source src={banner1pc} type="video/mp4" />
-        </video>
+        </video> -->
+        <div class="pic">
+          <Image src={banner1pc} alt="工业引擎" class="pc-pic" />
+        </div>
         <!-- 移动端img -->
         <Image src={banner1} alt="工业引擎" class="m-pic" />
-        <a href="#Engine">
+        <!-- <a href="#Engine">
           <div class="content">
             <h5>工业引擎</h5>
-            <p>Air8000系列选购</p>
+            <p>Air8000模组系列</p>
           </div>
-        </a>
+        </a> -->
       </div>
       <div class="swiper-slide">
-        <video autoplay loop muted>
+        <!-- <video autoplay loop muted>
           <source src={banner2pc} type="video/mp4" />
-        </video>
+        </video> -->
+        <div class="pic">
+          <Image src={banner2pc} alt="工业引擎" class="pc-pic" />
+        </div>
+
         <Image src={banner2} alt="工业引擎" class="m-pic" />
-        <a href="#fourG">
+        <!-- <a href="#fourG">
           <div class="content">
             <h5>4G模组</h5>
-            <p>4G模组</p>
+            <p>Air780模组系列</p>
           </div>
-        </a>
+        </a> -->
       </div>
       <div class="swiper-slide">
         <div class="pic">
-          <Image src={banner3pc} alt="" />
+          <Image src={banner3pc} alt="工业引擎" class="pc-pic" />
         </div>
         <Image src={banner3} alt="工业引擎" class="m-pic" />
-
-        <a href="#meter">
+        <!-- <a href="#meter">
           <div class="content">
             <h5>仪表</h5>
-            <p>合宙功耗分析仪Air9000 直流电源/Air9000P</p>
+            <p>合宙功耗分析仪Air9000P</p>
           </div>
-        </a>
+        </a> -->
       </div>
-      <div class="swiper-slide">
+      <!-- <div class="swiper-slide">
         <div class="pic">
-          <Image src={banner3pc} alt="" />
+          <Image src={banner4pc} alt="工业引擎" class="pc-pic" />
         </div>
         <Image src={banner3} alt="工业引擎" class="m-pic" />
 
@@ -218,7 +244,7 @@ import banner3 from "../assets/images/banner-carousel/banner-3.jpeg";
             <p>IoT DTU MES LBS</p>
           </div>
         </a>
-      </div>
+      </div> -->
     </div>
     <div class="swiper-pagination"></div>
     <div class="swiper-button-prev"></div>
@@ -233,11 +259,11 @@ import banner3 from "../assets/images/banner-carousel/banner-3.jpeg";
     let mySwiper = new Swiper(".swiper", {
       modules: [Pagination, Autoplay, Navigation],
       loop: true,
-      autoplay: {
-        delay: 3000,
-        stopOnLastSlide: false,
-        disableOnInteraction: true,
-      },
+      // autoplay: {
+      //   delay: 3000,
+      //   stopOnLastSlide: false,
+      //   disableOnInteraction: true,
+      // },
       pagination: {
         el: ".swiper-pagination",
         clickable: true,

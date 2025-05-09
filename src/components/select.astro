@@ -8,6 +8,7 @@ import SelectionAI from "./selectionAI.astro";
     width: 100%;
     padding-top: 10px;
     scroll-margin-top: 50px;
+    // margin-top: 64px;
     @media screen and (max-width: 768px) {
       padding-top: 2rem;
     }
@@ -23,7 +24,7 @@ import SelectionAI from "./selectionAI.astro";
 
       .select-nav {
         display: flex;
-        justify-content: flex-start;
+        justify-content: center;
         align-items: center;
         width: 91%;
         margin: 0 auto;
@@ -34,21 +35,14 @@ import SelectionAI from "./selectionAI.astro";
           margin: 0 auto;
         }
         div {
-          padding: 30px 60px 30px 0;
+          padding: 30px 0 30px 0;
           cursor: pointer;
           @media screen and (max-width: 768px) {
             font-size: 1rem;
             margin: 0 2rem;
             padding: 0;
           }
-          &.active {
-            color: @primary-blue;
-            span {
-              &::after {
-                width: 100%;
-              }
-            }
-          }
+
           span {
             border-radius: 20px;
             transition: all 0.3s;
@@ -56,22 +50,6 @@ import SelectionAI from "./selectionAI.astro";
             display: inline-block;
             @media screen and (max-width: 768px) {
               padding: 5px 0;
-            }
-            &::after {
-              content: "";
-              position: absolute;
-              left: 0;
-              right: 0;
-              bottom: -68%;
-              height: 3px;
-              background: #1690ff;
-              border-radius: 5px;
-              width: 0%;
-              transition: width 0.2s ease-in-out;
-              @media screen and (max-width: 768px) {
-                bottom: -1px;
-                height: 2px;
-              }
             }
           }
         }
@@ -90,12 +68,6 @@ import SelectionAI from "./selectionAI.astro";
         @media screen and (max-width: 768px) {
           margin-top: 1rem;
         }
-        > div {
-          display: none;
-          &.active {
-            display: block;
-          }
-        }
       }
     }
   }
@@ -103,114 +75,18 @@ import SelectionAI from "./selectionAI.astro";
 <section id="select">
   <div class="select-nav-container">
     <div class="select-nav">
-      <div class="active"><span>选型帮助</span></div>
-      <div><span>AI选型</span></div>
+      <div><span>AI选型帮助</span></div>
     </div>
   </div>
   <div class="select-container">
     <div class="select-content">
-      <div class="active">
+      <div>
         <SelectionList />
       </div>
       <div>
-        <SelectionAI />
+        <!-- <SelectionAI /> -->
       </div>
     </div>
   </div>
 </section>
-<script>
-  import $ from "jquery";
-
-  $(function ($) {
-    // 缓存选择器
-    const $selectNavDivs = $(".select-nav div");
-    const $selectContentDivs = $(".select-content > div");
-    const $inputSub = $(".inputSub");
-    const $selecttitle = $(".select-title");
-    const $selectForm = $(".select-form");
-    let realTimeValue = "";
-
-    // tab切换
-    $selectNavDivs.on("click", function () {
-      $(this).addClass("active").siblings().removeClass("active");
-      $selectContentDivs
-        .eq($(this).index())
-        .addClass("active")
-        .siblings()
-        .removeClass("active");
-    });
-
-    // 选择框
-    //计算title的宽度
-    let titleWidth = 0;
-    $selecttitle.each(function (index: number, item: HTMLElement) {
-      const width = item.offsetWidth;
-      if (width > titleWidth) {
-        titleWidth = width;
-      }
-    });
-    $selecttitle.each(function (index, item) {
-      item.style.width = titleWidth + "px";
-    });
-    //拿到from数据
-    interface FormData {
-      [key: string]: string | number;
-    }
-    const formData: FormData = {};
-    //复用调用函数
-    function getFormData() {
-      $selectForm.each(function () {
-        const $form = $(this);
-        const key = $form.find(".select-title").text().replace(":", "").trim();
-        const value = $form.find('input[type="radio"]:checked').val();
-        const $checkedInput = $form.find('input[type="radio"]:checked');
-        $form.find('input[type="radio"]').siblings().css("color", "");
-        if (typeof value === "string" || typeof value === "number") {
-          formData[key] = value;
-          $checkedInput.siblings().css("color", "#1690ff");
-        }
-      });
-    }
-    getFormData();
-    console.log("表单数据：", formData);
-    //当表单发生变化的时候，获取表单数据
-    $('.select-form input[type="radio"]').on("change", function () {
-      getFormData();
-      console.log("表单数据已更新：", formData);
-    });
-
-    // 输入框实时值
-    $inputSub.on("input", function () {
-      realTimeValue = $(this).val() as string;
-    });
-
-    // 关闭输入框
-    $(".close-iocn").on("click", function () {
-      $inputSub.val("");
-      realTimeValue = "";
-    });
-
-    // 提交输入框内容
-    const handleSubmit = () => {
-      if (realTimeValue.trim()) {
-        console.log("提交内容：", realTimeValue);
-        $inputSub.val("");
-        realTimeValue = "";
-      }
-    };
-
-    // 提交图标点击事件
-    $(".submit-icon").on("click", (event) => {
-      event.preventDefault();
-      handleSubmit();
-    });
-
-    // 输入框回车键提交
-    $inputSub.on("keypress", (event) => {
-      if (event.which === 13 || event.key === "Enter") {
-        event.preventDefault();
-        handleSubmit();
-      }
-    });
-  });
-</script>
+<script></script>

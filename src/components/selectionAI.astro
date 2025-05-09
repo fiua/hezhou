@@ -2,7 +2,7 @@
 
 ---
 
-<style>
+<style lang="less">
   .selectionAI {
     p {
       text-align: center;
@@ -115,3 +115,47 @@
     </div>
   </div>
 </div>
+<script>
+  import $ from "jquery";
+  // import { api } from "../api/index.ts";
+  const $inputSub = $(".inputSub");
+  let realTimeValue = "";
+  $(() => {
+    // 输入框实时值
+    $inputSub.on("input", function () {
+      realTimeValue = $(this).val() as string;
+    });
+
+    // 关闭输入框
+    $(".close-iocn").on("click", function () {
+      $inputSub.val("");
+      realTimeValue = "";
+    });
+
+    // 提交输入框内容;
+    const handleSubmit = async () => {
+      if (realTimeValue.trim()) {
+        // console.log("提交内容：", realTimeValue);
+
+        // 调用AI接口
+
+        $inputSub.val("");
+        realTimeValue = "";
+      }
+    };
+
+    // 提交图标点击事件
+    $(".submit-icon").on("click", (event) => {
+      event.preventDefault();
+      handleSubmit();
+    });
+
+    // 输入框回车键提交
+    $inputSub.on("keypress", (event) => {
+      if (event.which === 13 || event.key === "Enter") {
+        event.preventDefault();
+        handleSubmit();
+      }
+    });
+  });
+</script>
